@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/Program/Java/Bootcamp%2019/LatihanPersistance/src/daos/InterfaceDAO.java</file>
+            <file>file:/D:/Program/Java/Bootcamp%2019/LatihanPersistance/src/tools/HibernateUtil.java</file>
+            <file>file:/D:/Program/Java/Bootcamp%2019/LatihanPersistance/src/daos/RegionDAO.java</file>
+            <file>file:/D:/Program/Java/Bootcamp%2019/LatihanPersistance/src/entities/Country.java</file>
+            <file>file:/D:/Program/Java/Bootcamp%2019/LatihanPersistance/src/entities/Region.java</file>
+            <file>file:/D:/Program/Java/Bootcamp%2019/LatihanPersistance/src/daos/RegionDAOS.java</file>
+            <file>file:/D:/Program/Java/Bootcamp%2019/LatihanPersistance/src/latihanpersistance/LatihanPersistance.java</file>
+            <file>file:/D:/Program/Java/Bootcamp%2019/LatihanPersistance/src/hibernate.cfg.xml</file>
+            <file>file:/D:/Program/Java/Bootcamp%2019/LatihanPersistance/src/daos/GeneralDAO.java</file>
+        </group>
+    </open-files>
+</project-private>
