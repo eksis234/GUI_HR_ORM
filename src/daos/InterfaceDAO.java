@@ -13,8 +13,8 @@ import java.util.List;
  */
 public interface InterfaceDAO {
     public boolean saveOrUpdate(Object object);
-    public boolean delete(String id);
+    public boolean delete(Object object);
     public List<Object> getAll();
-    public List<Object> search(String category, String key);
-    public Object getById(String id);
+    public List<Object> search(String category, Object key);
+    public Object getById(String category, Object id);
 }

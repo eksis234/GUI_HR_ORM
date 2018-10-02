@@ -5,73 +5,48 @@
  */
 package daos;
 
-import org.hibernate.Session;
+import entities.Region;
+import java.math.BigDecimal;
+import java.util.List;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
 
 /**
  *
  * @author Ignatius
  */
-public class GeneralDAO {
-    private final SessionFactory factory;
-    private Session session;
-    private Transaction transaction;
-
-    public GeneralDAO(SessionFactory sessionFactory) {
-        this.factory = sessionFactory;
-    }
-    /**
-     *
-     * @param CRUD - 0 for Save/Update, 1 for delete, 2 for getById, 3 for
-     * search, selain 0-3 for getAll
-     * @param type
-     * @param category
-     * @param key
-     * @return
-     */
-    public Object execute(int CRUD, Object object, 
-            Class type, String category, Object key) {
-        Object obj = null;
-        try {
-            this.session = factory.openSession();
-            this.transaction = session.beginTransaction();
-            obj = this.getAction(session, CRUD, object, type, category, key);
-            this.transaction.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            if (transaction != null) {
-                transaction.rollback();
-            }
-        } finally {
-            session.close();
-        }
-        return obj;
+public class GeneralDAO implements InterfaceDAO{
+    
+    private final FunctionDAO gdao;
+    private final Class type;
+    
+    public GeneralDAO(SessionFactory sessionFactory, Class type) {
+        this.gdao = new FunctionDAO(sessionFactory);
+        this.type = type;
     }
 
-    private Object getAction(Session session, int crud, 
-            Object object, Class type, String category, Object key) {
-        switch (crud) {
-            case 0: boolean flag = false;
-                session.saveOrUpdate(object);
-                flag = true;
-                return flag;
-            case 1: flag = false;
-                session.delete(object);
-                flag = true;
-                return true;
-            case 2:
-                return session.createCriteria(type)
-                        .add(Restrictions.eq(category, key))
-                        .uniqueResult();
-            case 3:
-                return session.createCriteria(type)
-                        .add(Restrictions.eq(category, key))
-                        .list();
-            default:
-                return session.createQuery("FROM " + type
-                        .getSimpleName() + " ORDER BY 1").list();
-        }
+    @Override
+    public boolean saveOrUpdate(Object object) {
+        return (boolean) gdao.execute(0, object, type, null, null);
     }
+
+    @Override
+    public boolean delete(Object object) {
+        return (boolean) gdao.execute(1, object, type, null, null);
+    }
+
+    @Override
+    public List<Object> getAll() {
+        return (List<Object>) gdao.execute(4, null, type, null, null);
+    }
+
+    @Override
+    public List<Object> search(String category, Object key) {
+        return (List<Object>) gdao.execute(3, null, type, category, key);
+    }
+
+    @Override
+    public Object getById(String category, Object id) {
+        return gdao.execute(2, null, type, category, id);
+    }
+
 }

@@ -51,6 +51,11 @@ public class Region implements Serializable {
         this.regionId = regionId;
     }
 
+    public Region(BigDecimal regionId, String regionName) {
+        this.regionId = regionId;
+        this.regionName = regionName;
+    }
+
     public BigDecimal getRegionId() {
         return regionId;
     }

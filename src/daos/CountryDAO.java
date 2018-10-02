@@ -5,23 +5,17 @@
  */
 package daos;
 
-import entities.Region;
-import java.math.BigDecimal;
 import org.hibernate.SessionFactory;
 
 /**
  *
  * @author Ignatius
  */
-public class RegionDAO extends GeneralDAO{
+public class CountryDAO extends GeneralDAO{
     private final Class type;
-    
-    public RegionDAO(SessionFactory sessionFactory, Class type) {
+    public CountryDAO(SessionFactory sessionFactory, Class type) {
         super(sessionFactory, type);
         this.type = type;
     }
     
-    public Object getById(Object id){
-        return super.getById("regionId", id);
-    }
 }
