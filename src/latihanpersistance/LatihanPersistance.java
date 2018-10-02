@@ -72,11 +72,11 @@ public class LatihanPersistance {
 
     InterfaceDAO iDAO = new RegionDAO(HibernateUtil
             .getSessionFactory(), Region.class);
-    Region region = new Region(new BigDecimal("14"));
+    Region region = new Region(new BigDecimal("4"));
     region.setRegionName("Kotor");
 //        System.out.println(iDAO.saveOrUpdate(region));
 //        System.out.println(iDAO.delete("14"));
-    region = (Region) iDAO.getById("regionId", "11");
+//    region = (Region) iDAO.getById("regionId", "11");
 //        System.out.println(region.getRegionName());
 //        for (Object object : iDAO.search("regionName", "Asia")) {
 //        for (Object object : iDAO.getAll()) {
@@ -85,9 +85,24 @@ public class LatihanPersistance {
 //        }
         iDAO = new CountryDAO(HibernateUtil
                 .getSessionFactory(), Country.class);
-        for (Object object : iDAO.getAll()) {
-            Country country = (Country) object;
-            System.out.println(country.getCountryName());
-        }
+        Country country = new Country("AE");
+        country.setCountryName("AGAK_GARANG");
+        country.setRegionId(region);
+        System.out.println(iDAO.saveOrUpdate(country));
+
+//        System.out.println(iDAO.delete(country));
+
+//        country = (Country) iDAO.getById("countryId", "AD");
+//        System.out.println(country.getCountryId() + " - " + country.getCountryName());
+
+//        for (Object object : iDAO.search("countryName", "AGAKGALAK")) {
+//             country = (Country) object;
+//             System.out.println(country.getCountryId()+" - "+country.getCountryName());              
+//            }
+//        
+//        for (Object object : iDAO.getAll()) {
+//            country = (Country) object;
+//            System.out.println(country.getCountryId()+" - "+country.getCountryName());
+//        }
     }
 }

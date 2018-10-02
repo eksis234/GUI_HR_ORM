@@ -18,4 +18,8 @@ public class CountryDAO extends GeneralDAO{
         this.type = type;
     }
     
+    public Object getCountryId(Object id){
+        return super.getById("countryName", id);
+    }
+    
 }
