@@ -76,8 +76,8 @@ public class LatihanPersistance {
 //        System.out.println(r.getRegionName());
 
 
-        RegionController rc = new RegionController(HibernateUtil.getSessionFactory(), Region.class);
-        CountryController cc =  new CountryController(HibernateUtil.getSessionFactory(), Country.class);
+        RegionController rc = new RegionController(HibernateUtil.getSessionFactory());
+        CountryController cc =  new CountryController(HibernateUtil.getSessionFactory());
         Scanner in = new Scanner(System.in);
         Region region = new Region();
         Country country = new Country();
@@ -133,7 +133,7 @@ public class LatihanPersistance {
                         break;
                     case 5:
                         System.out.print("\nAnda Memilih fungsi GetById \nMasukkan Region Id : "); inputId = in.next();
-                        region = (Region) rc.getById("regionId", new BigDecimal(inputId));
+                        region = (Region) rc.getById(inputId);
                         System.out.println(region.getRegionId() + " - " + region.getRegionName());
                         break;
                     default:break;
@@ -195,7 +195,7 @@ public class LatihanPersistance {
                     case 5: 
                         System.out.print("\nAnda Memilih fungsi GetById \nMasukkan Country Id : "); inputId = in.next();
                         System.out.println("Country Id - Country Name - Region Id - Region Name");
-                        country = (Country) cc.getById("countryId", inputId);
+                        country = (Country) cc.getById(inputId);
                         System.out.println(country.getCountryId() + " - " + country.getCountryName() + ""
                                 + " - " + country.getRegionId().getRegionId() + " - " + country.getRegionId().getRegionName());
                         break;    

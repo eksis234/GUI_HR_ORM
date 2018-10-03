@@ -20,8 +20,4 @@ public class RegionDAO extends GeneralDAO{
         super(sessionFactory, type);
         this.type = type;
     }
-    
-    public Object getById(Object id){
-        return super.getById("regionId", id);
-    }
 }

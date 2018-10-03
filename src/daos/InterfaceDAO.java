@@ -16,5 +16,5 @@ public interface InterfaceDAO {
     public boolean delete(Object object);
     public List<Object> getAll();
     public List<Object> search(String category, Object key);
-    public Object getById(String category, Object id);
+    public Object getById(Object id);
 }

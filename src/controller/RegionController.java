@@ -5,6 +5,7 @@
  */
 package controller;
 
+import daos.GeneralDAO;
 import daos.InterfaceDAO;
 import daos.RegionDAO;
 import entities.Region;
@@ -17,11 +18,11 @@ import org.hibernate.SessionFactory;
  * @author Ignatius
  */
 public class RegionController{
-    private final Class type;
-    private InterfaceDAO iDAO;
-    public RegionController(SessionFactory sessionFactory, Class type) {
-        this.type = type;
-        iDAO = new RegionDAO(sessionFactory, Region.class);
+//    private final Class type;
+    private final InterfaceDAO iDAO;
+    public RegionController(SessionFactory sessionFactory) {
+//        this.type = type;
+        iDAO = new GeneralDAO(sessionFactory, Region.class);
     }
     
     public boolean saveOrUpdate(Object object) {
@@ -40,8 +41,8 @@ public class RegionController{
         return iDAO.search(category, key);
     }
 
-    public Object getById(String category, Object id) {
-        return iDAO.getById(category, id);
+    public Object getById(String regionId) {
+        return (Region) iDAO.getById(new BigDecimal(regionId));
     }
     
 }

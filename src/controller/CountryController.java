@@ -6,6 +6,7 @@
 package controller;
 
 import daos.CountryDAO;
+import daos.GeneralDAO;
 import daos.InterfaceDAO;
 import entities.Country;
 import java.util.List;
@@ -17,12 +18,11 @@ import org.hibernate.SessionFactory;
  * @author Lenovo
  */
 public class CountryController {
-private Class type;
 private InterfaceDAO idao;
 
-    public CountryController(SessionFactory sessionFactory, Class type) {
-        this.type = type;
-        idao = new CountryDAO(sessionFactory, Country.class);
+    public CountryController(SessionFactory sessionFactory) {
+//        this.type = type;
+        idao = new GeneralDAO(sessionFactory, Country.class);
     }
 
   
@@ -46,8 +46,8 @@ private InterfaceDAO idao;
     }
 
 
-    public Object getById(String category, Object id) {
-        return idao.getById(category, id);
+    public Object getById(String countryId) {
+        return idao.getById(countryId);
     }
     
     
