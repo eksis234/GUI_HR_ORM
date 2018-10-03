@@ -9,13 +9,14 @@ import daos.InterfaceDAO;
 import daos.RegionDAO;
 import entities.Region;
 import java.math.BigDecimal;
+import java.util.List;
 import org.hibernate.SessionFactory;
 
 /**
  *
  * @author Ignatius
  */
-public class RegionController {
+public class RegionController{
     private final Class type;
     private InterfaceDAO iDAO;
     public RegionController(SessionFactory sessionFactory, Class type) {
@@ -23,14 +24,24 @@ public class RegionController {
         iDAO = new RegionDAO(sessionFactory, Region.class);
     }
     
-    public boolean saveOrUpdate(String regionId, String regionName){
-        Region region = new Region(new BigDecimal(regionId), regionName);
-        return iDAO.saveOrUpdate(region);
+    public boolean saveOrUpdate(Object object) {
+        return iDAO.saveOrUpdate(object);
     }
-    
-    public boolean delete(String regionId){
-        Region region = new Region(new BigDecimal(regionId));
-        return iDAO.delete(region);
+
+    public boolean delete(Object object) {
+        return iDAO.delete(object);
+    }
+
+    public List<Object> getAll() {
+        return iDAO.getAll();
+    }
+
+    public List<Object> search(String category, Object key) {
+        return iDAO.search(category, key);
+    }
+
+    public Object getById(String category, Object id) {
+        return iDAO.getById(category, id);
     }
     
 }
