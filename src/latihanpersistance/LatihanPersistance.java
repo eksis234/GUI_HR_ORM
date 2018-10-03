@@ -5,6 +5,7 @@
  */
 package latihanpersistance;
 
+import controller.CountryController;
 import daos.CountryDAO;
 import daos.InterfaceDAO;
 //import daos.RegionDAO;
@@ -31,13 +32,14 @@ public class LatihanPersistance {
         // TODO code application logic here
 //        Region region = new Region(new BigDecimal("13"));
 //        region.setRegionName("coba saja lagi");
-////        GeneralDAO dAOS = new GeneralDAO(HibernateUtil
-////                .getSessionFactory(), Region.class);
-////        System.out.println(dAOS.saveOrUpdate(region));
+//        GeneralDAO dAOS = new GeneralDAO(HibernateUtil
+//                .getSessionFactory(), Region.class);
+//
 //        InterfaceDAO iDAO = new GeneralDAO(HibernateUtil
 //                .getSessionFactory(), Region.class);
+//        System.out.println(dAOS.saveOrUpdate(region));
 //        System.out.println(iDAO.saveOrUpdate(region));
-//        System.out.println(iDAO.delete("13"));
+//        System.out.println(iDAO.delete(region));
 //        for (Object object : iDAO.getAll()) {
 //            Region r = (Region) object;
 //            System.out.println(r.getRegionId()+" - "
@@ -70,12 +72,14 @@ public class LatihanPersistance {
 //        Region r = (Region) iDAO.getById("4");
 //        System.out.println(r.getRegionName());
 
-    InterfaceDAO iDAO = new RegionDAO(HibernateUtil
-            .getSessionFactory(), Region.class);
+
+        
+//    InterfaceDAO iDAO = new RegionDAO(HibernateUtil
+//            .getSessionFactory(), Region.class);
     Region region = new Region(new BigDecimal("4"));
-    region.setRegionName("Kotor");
-//        System.out.println(iDAO.saveOrUpdate(region));
-//        System.out.println(iDAO.delete("14"));
+    region.setRegionName("KirigakurE");
+////        System.out.println(iDAO.saveOrUpdate(region));
+//        System.out.println(iDAO.delete(region));
 //    region = (Region) iDAO.getById("regionId", "11");
 //        System.out.println(region.getRegionName());
 //        for (Object object : iDAO.search("regionName", "Asia")) {
@@ -83,26 +87,34 @@ public class LatihanPersistance {
 //            region = (Region) object;
 //            System.out.println(region.getRegionId());
 //        }
-        iDAO = new CountryDAO(HibernateUtil
-                .getSessionFactory(), Country.class);
-        Country country = new Country("AE");
+
+CountryController cc =  new CountryController(HibernateUtil.getSessionFactory(), Country.class);
+        Country country = new Country("AF");
         country.setCountryName("AGAK_GARANG");
         country.setRegionId(region);
-        System.out.println(iDAO.saveOrUpdate(country));
+//        System.out.println(cc.saveOrUpdate(country));
 
-//        System.out.println(iDAO.delete(country));
+//        System.out.println(cc.delete(country));
 
-//        country = (Country) iDAO.getById("countryId", "AD");
-//        System.out.println(country.getCountryId() + " - " + country.getCountryName());
+//        System.out.println("Country Id - Country Name - Region Id - Region Name");
+//        country = (Country) cc.getById("countryId", "AD");
+//        System.out.println(country.getCountryId() + " - " + country.getCountryName()+""
+//                + " - "+country.getRegionId().getRegionId()+" - "+country.getRegionId().getRegionName());
 
-//        for (Object object : iDAO.search("countryName", "AGAKGALAK")) {
+//        System.out.println("Country Id - Country Name - Region Id - Region Name");
+//        for (Object object : cc.search("regionId", region)) {
 //             country = (Country) object;
-//             System.out.println(country.getCountryId()+" - "+country.getCountryName());              
+//             System.out.println(country.getCountryId()+" - "+country.getCountryName()+" "
+//                     + "- "+country.getRegionId().getRegionId()+" - "+
+//                     country.getRegionId().getRegionName());              
 //            }
 //        
-//        for (Object object : iDAO.getAll()) {
-//            country = (Country) object;
-//            System.out.println(country.getCountryId()+" - "+country.getCountryName());
-//        }
+        System.out.println("Country Id - Country Name - Region Id - Region Name");
+        for (Object object : cc.getAll()) {
+            country = (Country) object;
+            System.out.println(country.getCountryId()+" - "+country.getCountryName()+" - "+
+                    country.getRegionId().getRegionId()+" - "+country.getRegionId().getRegionName());
+            //" - "+country.getLocationList().size()) dianjurkan memakai for 
+        }
     }
 }
