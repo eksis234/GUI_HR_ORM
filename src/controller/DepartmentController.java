@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Vector;
 import javax.swing.JComboBox;
 import org.hibernate.SessionFactory;
+import org.hibernate.jpa.criteria.expression.function.SubstringFunction;
 
 /**
  *
@@ -22,9 +23,6 @@ import org.hibernate.SessionFactory;
 public class DepartmentController {
  
     private final InterfaceDAO iDAO;
-    private Vector listManager;
-    private Vector listLocation;
-    private Vector listDepartment;
     private final EmployeeController empController;
     private final LocationController locController;
     
@@ -35,8 +33,8 @@ public class DepartmentController {
     }
     
     public boolean saveOrUpdate(String departmentId, String departmentName, String managerId, String locationId){
-        Employee manager = new Employee(new Integer(managerId));
-        Location location = new Location(new Short(locationId));
+        Employee manager = new Employee(new Integer(managerId.substring(0,3)));
+        Location location = new Location(new Short(locationId.substring(0,4)));
         Department department = new Department(new Short(departmentId), departmentName, manager, location);
         return iDAO.saveOrUpdate(department);
     }
@@ -51,7 +49,18 @@ public class DepartmentController {
     }
     
     public List<Object> search(String category, Object key){
-        return iDAO.search(category, key);
+        if(category.equals("departmentName")){
+            return iDAO.search(category, key);
+        }
+        else if(category.equals("managerId")){
+            return iDAO.search(category, (Employee) empController.getById((key+"")));
+        }
+        else if(category.equals("locationId")){
+            return iDAO.search(category, (Location) locController.getById((key+"")));
+        }
+        else{
+            return iDAO.search(category, new Short(key+""));
+        }
     }
     
     public List<Object> getAll(){
@@ -64,7 +73,6 @@ public class DepartmentController {
     }
     
     public void loadCmbDepartmentName(JComboBox cmb){
-//        listDepartment = new Vector();
         List<Object> objects = this.getAll();
         for (Object object : objects) {
             Department department = (Department) object;
@@ -73,7 +81,6 @@ public class DepartmentController {
     }
     
     public  void loadCmbManagerId(JComboBox cmb){
-//        listManager = new Vector();
         List<Object> objects = (List<Object>) empController.getAll();
         for (Object object : objects) {
             Employee employee = (Employee) object;
@@ -82,7 +89,6 @@ public class DepartmentController {
     }
     
     public  void loadCmbLocationId(JComboBox cmb){
-        listLocation = new Vector();
         List<Location> objects = (List<Location>) locController.getAll();
         for (Object object : objects) {
             Location location = (Location) object;

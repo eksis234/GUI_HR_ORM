@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -20,6 +21,7 @@ public class HrView extends javax.swing.JFrame {
     public HrView() {
         initComponents();
         this.sf = HibernateUtil.getSessionFactory();
+        
     }
 
     /**
@@ -33,7 +35,7 @@ public class HrView extends javax.swing.JFrame {
 
         dpUtamaHr = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        jmRegion = new javax.swing.JMenu();
         jmRegions = new javax.swing.JMenuItem();
         jmCountries = new javax.swing.JMenuItem();
         jmLocations = new javax.swing.JMenuItem();
@@ -56,7 +58,7 @@ public class HrView extends javax.swing.JFrame {
             .addGap(0, 465, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("File");
+        jmRegion.setText("File");
 
         jmRegions.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         jmRegions.setText("Regions");
@@ -65,7 +67,7 @@ public class HrView extends javax.swing.JFrame {
                 jmRegionsActionPerformed(evt);
             }
         });
-        jMenu1.add(jmRegions);
+        jmRegion.add(jmRegions);
 
         jmCountries.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         jmCountries.setText("Countries");
@@ -74,7 +76,7 @@ public class HrView extends javax.swing.JFrame {
                 jmCountriesActionPerformed(evt);
             }
         });
-        jMenu1.add(jmCountries);
+        jmRegion.add(jmCountries);
 
         jmLocations.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
         jmLocations.setText("Locations");
@@ -83,7 +85,7 @@ public class HrView extends javax.swing.JFrame {
                 jmLocationsActionPerformed(evt);
             }
         });
-        jMenu1.add(jmLocations);
+        jmRegion.add(jmLocations);
 
         jmJobs.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.CTRL_MASK));
         jmJobs.setText("Jobs");
@@ -92,7 +94,7 @@ public class HrView extends javax.swing.JFrame {
                 jmJobsActionPerformed(evt);
             }
         });
-        jMenu1.add(jmJobs);
+        jmRegion.add(jmJobs);
 
         jmDepartments.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
         jmDepartments.setText("Departments");
@@ -101,7 +103,7 @@ public class HrView extends javax.swing.JFrame {
                 jmDepartmentsActionPerformed(evt);
             }
         });
-        jMenu1.add(jmDepartments);
+        jmRegion.add(jmDepartments);
 
         jmEmployees.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
         jmEmployees.setText("Employees");
@@ -110,9 +112,9 @@ public class HrView extends javax.swing.JFrame {
                 jmEmployeesActionPerformed(evt);
             }
         });
-        jMenu1.add(jmEmployees);
+        jmRegion.add(jmEmployees);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jmRegion);
 
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
@@ -135,9 +137,9 @@ public class HrView extends javax.swing.JFrame {
 
     private void jmRegionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmRegionsActionPerformed
         // TODO add your handling code here:
-        RegionView regionView = new RegionView();
-        regionView.show();
-        dpUtamaHr.add(regionView); 
+         RegionView regionView = new RegionView(sf);
+         regionView.show();
+         dpUtamaHr.add(regionView);
     }//GEN-LAST:event_jmRegionsActionPerformed
 
     private void jmCountriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCountriesActionPerformed
@@ -149,21 +151,21 @@ public class HrView extends javax.swing.JFrame {
 
     private void jmLocationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmLocationsActionPerformed
         // TODO add your handling code here:
-        LocationView locationView = new LocationView();
+        LocationView locationView = new LocationView(sf);
         locationView.show();
         dpUtamaHr.add(locationView);
     }//GEN-LAST:event_jmLocationsActionPerformed
 
     private void jmJobsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmJobsActionPerformed
         // TODO add your handling code here:
-        JobView jobView = new JobView();
+        JobView jobView = new JobView(sf);
         jobView.show();
         dpUtamaHr.add(jobView);
     }//GEN-LAST:event_jmJobsActionPerformed
 
     private void jmDepartmentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmDepartmentsActionPerformed
         // TODO add your handling code here:
-        DepartmentView departmentView = new DepartmentView();
+        DepartmentView departmentView = new DepartmentView(sf);
         departmentView.show();
         dpUtamaHr.add(departmentView);
     }//GEN-LAST:event_jmDepartmentsActionPerformed
@@ -219,7 +221,6 @@ public class HrView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane dpUtamaHr;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jmCountries;
@@ -227,6 +228,7 @@ public class HrView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmEmployees;
     private javax.swing.JMenuItem jmJobs;
     private javax.swing.JMenuItem jmLocations;
+    private javax.swing.JMenu jmRegion;
     private javax.swing.JMenuItem jmRegions;
     // End of variables declaration//GEN-END:variables
 }
