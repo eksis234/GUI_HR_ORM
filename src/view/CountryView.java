@@ -31,7 +31,7 @@ public class CountryView extends javax.swing.JInternalFrame {
     public CountryView(SessionFactory sessionFactory) {
         initComponents();
         controller = new CountryController(sessionFactory);
-        bindingCountries((List<Country>) controller.getAll());
+        bindingCountries(controller.getAll());
         controller.loadCmbCountry(cmbRegionId); 
         tblCountry.setRowSorter(rowSorter);
     }
@@ -237,12 +237,17 @@ public class CountryView extends javax.swing.JInternalFrame {
     private void txtFindCountryKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFindCountryKeyReleased
         // TODO add your handling code here:
         if (txtFindCountry.getText().equals("")) {
-                bindingCountries((List<Country>) controller.getAll()); 
+                bindingCountries(controller.getAll()); 
             }else if (!txtFindCountry.getText().equalsIgnoreCase("")){
                 btnFindC.setEnabled(true);
             }
         if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
-            bindingCountries((List<Country>) controller.search(cmbItem[cmbKategoriCountry.getSelectedIndex()], txtFindCountry.getText()));
+            if (cmbKategoriCountry.getSelectedItem().equals("Region Id")){
+            bindingCountries(controller.search("regionId", new BigDecimal(txtFindCountry.getText())));
+            } else if (cmbKategoriCountry.getSelectedItem().equals("Country Id")){
+            bindingCountries(controller.search("countryId", txtFindCountry.getText()));
+            }else if (cmbKategoriCountry.getSelectedItem().equals("Country Name"))
+            bindingCountries(controller.search("countryName", txtFindCountry.getText()));
         }
     }//GEN-LAST:event_txtFindCountryKeyReleased
 
@@ -266,10 +271,10 @@ public class CountryView extends javax.swing.JInternalFrame {
         if (isUpdate) {   
             controller.saveOrUpdate(country);        //txtCountryId.getText(),txtCountryName.getText(),  subRegionId, false);
             JOptionPane.showMessageDialog(this, "Pesan Update", "Judul", JOptionPane.INFORMATION_MESSAGE);
-            bindingCountries((List<Country>) controller.getAll());}
+            bindingCountries(controller.getAll());}
         else {controller.saveOrUpdate(country);    //txtCountryId.getText(),txtCountryName.getText(), subRegionId, true);
             JOptionPane.showMessageDialog(this, "Pesan Simpan", "Judul", JOptionPane.INFORMATION_MESSAGE);
-            bindingCountries((List<Country>) controller.getAll());
+            bindingCountries(controller.getAll());
             txtCountryId.setEditable(true);                       
          }
        cmbRegionId.setSelectedIndex(0);
@@ -285,9 +290,9 @@ public class CountryView extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(this, "Pesan Delete", "Judul", JOptionPane.INFORMATION_MESSAGE);
         }else if (response == JOptionPane.NO_OPTION) {
             JOptionPane.showMessageDialog(this, "Tidak Jadi Hapus", "Pesan Batal Delete", JOptionPane.INFORMATION_MESSAGE);
-            bindingCountries((List<Country>) controller.getAll());
+            bindingCountries(controller.getAll());
         }       
-        bindingCountries((List<Country>) controller.getAll());
+        bindingCountries(controller.getAll());
         cmbRegionId.setSelectedIndex(0);
     }//GEN-LAST:event_btnDropCActionPerformed
 
@@ -300,7 +305,13 @@ public class CountryView extends javax.swing.JInternalFrame {
     private void btnFindCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindCActionPerformed
         // TODO add your handling code here:
         if (!txtFindCountry.getText().equalsIgnoreCase("")) { 
-            bindingCountries((List<Country>) controller.search(cmbItem[cmbKategoriCountry.getSelectedIndex()], txtFindCountry.getText()));
+            if (cmbKategoriCountry.getSelectedItem().equals("Region Id")){
+            bindingCountries(controller.search("regionId", new BigDecimal(txtFindCountry.getText())));
+            } else if (cmbKategoriCountry.getSelectedItem().equals("Country Id")){
+            bindingCountries(controller.search("countryId", txtFindCountry.getText()));
+            }
+            bindingCountries(controller.search("countryName", txtFindCountry.getText()));            
+            //bindingCountries(controller.search(cmbItem[cmbKategoriCountry.getSelectedIndex()], txtFindCountry.getText()));
         }
     }//GEN-LAST:event_btnFindCActionPerformed
 
@@ -322,15 +333,17 @@ public class CountryView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtFindCountry;
     // End of variables declaration//GEN-END:variables
 
-private void bindingCountries(List<Country> countrys) {
+private void bindingCountries(List<Object> countrys) {
     String [] header = {"No","Country Id","Country Name","Region Name"};
         String [][] data = new String[countrys.size()][header.length];
-        for (int i = 0; i < countrys.size(); i++) {
-            data [i][0] = (i+1)+"";
-            data [i][1] = countrys.get(i).getCountryId();
-            data [i][2] = countrys.get(i).getCountryName();
-//            data [i][3] = countrys.get(i).getRegionId().getRegionId();
-            data [i][3] = countrys.get(i).getRegionId().getRegionName();       
+        int i = 0;
+        for (Object object : countrys) {
+            Country c =  (Country) object;
+            data[i][0] = (i + 1) + "";
+            data[i][1] = c.getCountryId();
+            data[i][2] = c.getCountryName();
+            data[i][3] = c.getRegionId().getRegionId()+" - "+c.getRegionId().getRegionName();
+            i++;
         }
         tblCountry.setModel(new DefaultTableModel(data, header));
         reset();     

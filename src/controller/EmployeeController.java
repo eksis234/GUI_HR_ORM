@@ -38,7 +38,7 @@ public class EmployeeController {
     }
     
     public boolean delete(String employeeId){
-        Employee employee =  new Employee(new Integer(employeeId));
+        Employee employee =  (Employee) getById(employeeId);
         return iDAO.delete(employee);
     }
     

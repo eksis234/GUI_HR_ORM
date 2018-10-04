@@ -135,7 +135,7 @@ public class HrView extends javax.swing.JFrame {
 
     private void jmRegionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmRegionsActionPerformed
         // TODO add your handling code here:
-        RegionView regionView = new RegionView();
+        RegionView regionView = new RegionView(sf);
         regionView.show();
         dpUtamaHr.add(regionView); 
     }//GEN-LAST:event_jmRegionsActionPerformed
@@ -156,21 +156,21 @@ public class HrView extends javax.swing.JFrame {
 
     private void jmJobsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmJobsActionPerformed
         // TODO add your handling code here:
-        JobView jobView = new JobView();
+        JobView jobView = new JobView(sf);
         jobView.show();
         dpUtamaHr.add(jobView);
     }//GEN-LAST:event_jmJobsActionPerformed
 
     private void jmDepartmentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmDepartmentsActionPerformed
         // TODO add your handling code here:
-        DepartmentView departmentView = new DepartmentView();
+        DepartmentView departmentView = new DepartmentView(sf);
         departmentView.show();
         dpUtamaHr.add(departmentView);
     }//GEN-LAST:event_jmDepartmentsActionPerformed
 
     private void jmEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmEmployeesActionPerformed
         // TODO add your handling code here:
-        EmployeeView employeeView = new EmployeeView();
+        EmployeeView employeeView = new EmployeeView(sf);
         employeeView.show();
         dpUtamaHr.add(employeeView);
     }//GEN-LAST:event_jmEmployeesActionPerformed

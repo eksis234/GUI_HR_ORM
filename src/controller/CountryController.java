@@ -10,6 +10,7 @@ import daos.GeneralDAO;
 import daos.InterfaceDAO;
 import entities.Country;
 import entities.Region;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.swing.JComboBox;
 import org.hibernate.SessionFactory;
@@ -46,28 +47,17 @@ private final InterfaceDAO idao;
     }
 
 
-    public Object getAll() {
+    public List<Object> getAll() {
         return idao.getAll();
     }
 
 
-    public Object search(String category, Object key) {
-        if(category.equals("countryId")){
-            return idao.search(category, key);
+    public List<Object> search(String category, Object key) {
+        System.out.println(category+"-"+key);  
+        if(category.equals("regionId")){
+            return idao.search(category, (Region) rc.getById((String) (key)));
         }
-        else if (category.equals("countryName")){
-            return idao.search("countryName", key);
-        }
-        else if(category.equals("regionId")){
-            return idao.search(category, (Region) rc.getById((key+"")));
-        }
-        //if(category.equals("RegionName"))
-        else if(category.equals("regionName")){
-            return idao.search("regionName", key);
-        }
-        else{
-            return idao.search(category, new Short(key+""));
-        }
+        else return idao.search(category, key);   
     }
 
 

@@ -37,22 +37,45 @@ public class JobController {
         return idao.saveOrUpdate(job);
     }
     
+    /**
+     * Fungsi untuk menghapus data pada tabel Job
+     * @param jobId - job id
+     * @return mengembalikan nilai boolean apakah proses delete berhasil dilakukan
+     */
     public boolean delete(String jobId) {
-        Job job = getById(jobId);
-        return idao.delete(job);
+        Job jobs = (Job) getById(jobId);
+        return idao.delete(jobs);
     }
     
+    /**
+     * Fungsi untuk mendapatkan data berdasarkan job id
+     * @param jobId - job id
+     * @return mengembalikan data berupa Job
+     */
     public Job getById(String jobId){
-        Job job = new Job(jobId);
-        return (Job) idao.getById(job);
+        return (Job) idao.getById(jobId);
     }
     
+    /**
+     * Fungsi untuk mendapatkan semua data yang ada pada tabel Job
+     * @return mengembalikan semua data Job dalam bentuk List<Object>
+     */
     public List<Object> getAll(){
         return idao.getAll();
     }
     
+    /**
+     * Fungsi untuk mencari data dalam tabel Job berdasarkan kategori yang telah dipilih
+     * @param category - kategori dalam tabel Job (job id, job title, min salary, max salary)
+     * @param key - kata kunci yang ingin dicari
+     * @return mengembalikan hasil pencarian dalam bentuk List<Object>
+     */
     public List<Object> search(String category, String key){
-        return idao.search(category, key);
+        if (category.equals("jobId") || category.equals("jobTitle")){
+            return idao.search(category, key);
+        } else {
+            return idao.search(category, new Integer(key));
+        } 
     }
 
 }
