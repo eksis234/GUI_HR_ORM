@@ -43,6 +43,12 @@ public class HrView extends javax.swing.JFrame {
         jmDepartments = new javax.swing.JMenuItem();
         jmEmployees = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        mniRegionReport = new javax.swing.JMenuItem();
+        mniCountryReport = new javax.swing.JMenuItem();
+        mniLocationReport = new javax.swing.JMenuItem();
+        mniJobReport = new javax.swing.JMenuItem();
+        mniDepartmentReport = new javax.swing.JMenuItem();
+        mniEmployeeReport = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("HR VIEW .ORM");
@@ -116,7 +122,56 @@ public class HrView extends javax.swing.JFrame {
 
         jMenuBar1.add(jmRegion);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Report");
+
+        mniRegionReport.setText("Region Report");
+        mniRegionReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniRegionReportActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniRegionReport);
+
+        mniCountryReport.setText("Country Report");
+        mniCountryReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniCountryReportActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniCountryReport);
+
+        mniLocationReport.setText("Location Report");
+        mniLocationReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniLocationReportActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniLocationReport);
+
+        mniJobReport.setText("Job Report");
+        mniJobReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniJobReportActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniJobReport);
+
+        mniDepartmentReport.setText("Department Report");
+        mniDepartmentReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniDepartmentReportActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniDepartmentReport);
+
+        mniEmployeeReport.setText("Employee Report");
+        mniEmployeeReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniEmployeeReportActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniEmployeeReport);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -177,6 +232,30 @@ public class HrView extends javax.swing.JFrame {
         dpUtamaHr.add(employeeView);
     }//GEN-LAST:event_jmEmployeesActionPerformed
 
+    private void mniRegionReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniRegionReportActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mniRegionReportActionPerformed
+
+    private void mniCountryReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniCountryReportActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mniCountryReportActionPerformed
+
+    private void mniLocationReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniLocationReportActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mniLocationReportActionPerformed
+
+    private void mniJobReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniJobReportActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mniJobReportActionPerformed
+
+    private void mniDepartmentReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDepartmentReportActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mniDepartmentReportActionPerformed
+
+    private void mniEmployeeReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniEmployeeReportActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mniEmployeeReportActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -230,5 +309,11 @@ public class HrView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmLocations;
     private javax.swing.JMenu jmRegion;
     private javax.swing.JMenuItem jmRegions;
+    private javax.swing.JMenuItem mniCountryReport;
+    private javax.swing.JMenuItem mniDepartmentReport;
+    private javax.swing.JMenuItem mniEmployeeReport;
+    private javax.swing.JMenuItem mniJobReport;
+    private javax.swing.JMenuItem mniLocationReport;
+    private javax.swing.JMenuItem mniRegionReport;
     // End of variables declaration//GEN-END:variables
 }
