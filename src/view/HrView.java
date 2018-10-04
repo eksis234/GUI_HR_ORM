@@ -170,7 +170,7 @@ public class HrView extends javax.swing.JFrame {
 
     private void jmEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmEmployeesActionPerformed
         // TODO add your handling code here:
-        EmployeeView employeeView = new EmployeeView();
+        EmployeeView employeeView = new EmployeeView(sf);
         employeeView.show();
         dpUtamaHr.add(employeeView);
     }//GEN-LAST:event_jmEmployeesActionPerformed
