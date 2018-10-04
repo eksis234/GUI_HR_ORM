@@ -157,7 +157,7 @@ public class HrView extends javax.swing.JFrame {
 
     private void jmJobsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmJobsActionPerformed
         // TODO add your handling code here:
-        JobView jobView = new JobView();
+        JobView jobView = new JobView(sf);
         jobView.show();
         dpUtamaHr.add(jobView);
     }//GEN-LAST:event_jmJobsActionPerformed
@@ -231,3 +231,4 @@ public class HrView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmRegions;
     // End of variables declaration//GEN-END:variables
 }
+
