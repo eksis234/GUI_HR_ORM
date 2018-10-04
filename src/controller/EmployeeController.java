@@ -53,8 +53,8 @@ public class EmployeeController {
         return iDAO.saveOrUpdate(employee);
     }
     
-//    public Object getNewId(){
-//        Employee employee =  (Employee) iDAO.getLastId();
-//        return employee.getEmployeeId() + 10;
-//    }
+    public Object getNewId(){
+        Employee employee =  (Employee) iDAO.getLastId();
+        return employee.getEmployeeId() + 10;
+    }
 }

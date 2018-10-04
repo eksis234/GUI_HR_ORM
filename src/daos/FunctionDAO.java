@@ -15,6 +15,7 @@ import org.hibernate.criterion.Restrictions;
  * @author Ignatius
  */
 public class FunctionDAO {
+
     private final SessionFactory factory;
     private Session session;
     private Transaction transaction;
@@ -22,16 +23,17 @@ public class FunctionDAO {
     public FunctionDAO(SessionFactory sessionFactory) {
         this.factory = sessionFactory;
     }
+
     /**
      *
      * @param CRUD - 0 for Save/Update, 1 for delete, 2 for getById, 3 for
-     * search, selain 0-3 for getAll
+     * search, 4 for getLastId, selain 0-4 for getAll
      * @param type
      * @param category
      * @param key
      * @return
      */
-    public Object execute(int CRUD, Object object, 
+    public Object execute(int CRUD, Object object,
             Class type, String category, Object key) {
         Object obj = null;
         try {
@@ -50,17 +52,19 @@ public class FunctionDAO {
         return obj;
     }
 
-    private Object getAction(Session session, int crud, 
+    private Object getAction(Session session, int crud,
             Object object, Class type, String category, Object key) {
         switch (crud) {
-            case 0: boolean flag = false;
+            case 0:
+                boolean flag = false;
                 session.saveOrUpdate(object);
                 flag = true;
                 return flag;
-            case 1: flag = false;
+            case 1:
+                flag = false;
                 session.delete(object);
                 flag = true;
-                return true;
+                return flag;
             case 2:
                 return session.createCriteria(type)
                         .add(Restrictions.eq(category, key))
@@ -69,6 +73,9 @@ public class FunctionDAO {
                 return session.createCriteria(type)
                         .add(Restrictions.eq(category, key))
                         .list();
+            case 4:
+                return session.createQuery("FROM " + type
+                        .getSimpleName() + " ORDER BY 1 DESC").list().get(0);
             default:
                 return session.createQuery("FROM " + type
                         .getSimpleName() + " ORDER BY 1").list();

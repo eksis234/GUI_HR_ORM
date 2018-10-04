@@ -5,12 +5,11 @@
  */
 package controller;
 
-import daos.CountryDAO;
+
 import daos.GeneralDAO;
 import daos.InterfaceDAO;
 import entities.Country;
 import java.util.List;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 /**

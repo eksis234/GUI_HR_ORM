@@ -58,10 +58,10 @@ public class DepartmentController {
         return iDAO.getAll();
     }
     
-//    public Object getNewId(){
-//        Department department =  (Department) iDAO.getLastId();
-//        return department.getDepartmentId() + 1;
-//    }
+    public Object getNewId(){
+        Department department =  (Department) iDAO.getLastId();
+        return department.getDepartmentId() + 1;
+    }
     
     public void loadCmbDepartmentName(JComboBox cmb){
 //        listDepartment = new Vector();
