@@ -7,22 +7,30 @@ package view;
 
 import controller.RegionController;
 import entities.Region;
+import java.awt.event.KeyEvent;
+import java.math.BigDecimal;
 import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import org.hibernate.SessionFactory;
 
 /**
- *
- * @author Lenovo
+ * Deklarasi kelas RegionView dengan mengextends javax.swing.JInternalFrame dan menginisisai RegionController
+ * @author 680183
  */
 public class RegionView extends javax.swing.JInternalFrame {
     private final RegionController regionController;
+    
     /**
-     * Creates new form RegionView
+     * Method konstruktor dari kelas RegionView dengan parameter sessionFactory
      */
     public RegionView(SessionFactory sessionFactory) {
         initComponents();
         regionController = new RegionController(sessionFactory);
+        bindingRegions(regionController.getAll());
     }
 
     /**
@@ -62,6 +70,11 @@ public class RegionView extends javax.swing.JInternalFrame {
         txtSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSearchActionPerformed(evt);
+            }
+        });
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
             }
         });
 
@@ -145,6 +158,11 @@ public class RegionView extends javax.swing.JInternalFrame {
 
             }
         ));
+        tbRegion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbRegionMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbRegion);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -187,13 +205,31 @@ public class RegionView extends javax.swing.JInternalFrame {
     private void txtRegionIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRegionIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRegionIdActionPerformed
-
+    /**
+     * Method untuk button Save berfungsi melakukan aksi untuk menyimpan data baru dari Region
+     * @param evt merupakan suatu event
+     */
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        regionController.saveOrUpdate(txtRegionId.getText(), txtRegionName.getText());
+        bindingRegions(regionController.getAll());
+        reset();
     }//GEN-LAST:event_btnSaveActionPerformed
-
+    /**
+     * Method untuk button Drop berfungsi melakukan aksi untuk menghapus data dari Region
+     * @param evt merupakan suatu event
+     */
     private void btnDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDropActionPerformed
         // TODO add your handling code here:
+        int response = JOptionPane.showConfirmDialog(null, "Do you want to delete?","Pertanyaan",JOptionPane.YES_NO_OPTION);
+        if (response == JOptionPane.YES_OPTION) {
+        regionController.delete(txtRegionId.getText());
+        bindingRegions(regionController.getAll());
+        }else if (response == JOptionPane.NO_OPTION) {
+            bindingRegions(regionController.getAll());
+        }
+        bindingRegions(regionController.getAll());
+        reset();
     }//GEN-LAST:event_btnDropActionPerformed
 
     private void cmbCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCategoryActionPerformed
@@ -203,11 +239,55 @@ public class RegionView extends javax.swing.JInternalFrame {
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSearchActionPerformed
-
+    /**
+     * Method untuk menampilkan data Region di RegionView
+     * dengan menggunakan event Key released
+     * @param evt merupakan suatu event
+     */
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
+        if (cmbCategory.getSelectedItem()=="REGION ID"){
+                bindingRegions(regionController.search("regionId", new BigDecimal (txtSearch.getText())));
+            }
+            else {
+                bindingRegions(regionController.search("regionName", txtSearch.getText()));
+            }
     }//GEN-LAST:event_btnSearchActionPerformed
-     private void bindingRegions(List<Object> regions){
+   /**
+    * Method untuk dapat mengeklik salah satu data yang tertampil di tbRegion
+    * @param evt merupakan suatu event
+    */
+    private void tbRegionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbRegionMouseClicked
+        // TODO add your handling code here:
+        int row = tbRegion.getSelectedRow();     
+            txtRegionId.setText(tbRegion.getValueAt(row, 1).toString());
+            txtRegionName.setText(tbRegion.getValueAt(row, 2).toString());
+        edit();
+    }//GEN-LAST:event_tbRegionMouseClicked
+    /**
+     * Method untuk melakukan pencarian data Region di RegionView 
+     * dengan menggunakan event Key released
+     * @param evt merupakan suatu event
+     */
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        // TODO add your handling code here:
+        if(txtSearch.getText().equals("")){
+            bindingRegions(regionController.getAll());
+        }
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (cmbCategory.getSelectedItem().equals("REGION ID")){
+            bindingRegions(regionController.search("regionId", new BigDecimal(txtSearch.getText())));
+        }
+        else {
+            bindingRegions(regionController.search("regionName", txtSearch.getText()));
+        }
+        }
+    }//GEN-LAST:event_txtSearchKeyReleased
+    /**
+     * Method untuk menampilkan data Region dari db ke tabel di RegionView
+     * @param regions list dari region
+     */
+    private void bindingRegions(List<Object> regions){
         String[] header = {"No","RegionId", "RegionName"};
         String[][] data = new String[regions.size()][header.length];
          int i = 0;
@@ -237,9 +317,7 @@ public class RegionView extends javax.swing.JInternalFrame {
         txtRegionId.setEnabled(true);
         btnDrop.setEnabled(false);
         txtRegionId.setEditable(false);
-//        cmbRegionName.setSelectedIndex(0);
-//        cmbRegionId.setSelectedIndex(0);
-        bindingRegions((List<Object>) regionController.getAll());
+        txtRegionName.setText("");       
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
