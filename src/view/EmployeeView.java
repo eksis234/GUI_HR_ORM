@@ -405,17 +405,27 @@ public class EmployeeView extends javax.swing.JInternalFrame {
             Department department = (Department) object;
             departmentId = department.getDepartmentId().toString();
         }
-        JOptionPane.showMessageDialog(this, controller.saveOrUpdate(txtEmployeeId.getText(), txtFirstName.getText()
+        boolean isDone = controller.saveOrUpdate(txtEmployeeId.getText(), txtFirstName.getText()
                 , txtLastName.getText(), txtEmail.getText(), txtPhoneNumber.getText(), sdate, txtSalary.getText()
                 , txtCommissionPct.getText(), departmentId, managers[0]
-                , jobId));
+                , jobId);
+        String pesan = "Gagal";
+        if(isDone) pesan = "Sukses";
+        JOptionPane.showMessageDialog(this, pesan, "Pesan Save or Update", JOptionPane.INFORMATION_MESSAGE);
         reset();
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDropActionPerformed
         // TODO add your handling code here:
-
-        reset();
+        int dialogButton = JOptionPane.showConfirmDialog(this, "Are you sure to delete this?", "Delete Data", JOptionPane.YES_NO_OPTION);
+        if (dialogButton == JOptionPane.YES_OPTION) {
+            String pesan = "Gagal";
+            boolean isDone = controller.delete(txtEmployeeId.getText());
+            if (isDone) pesan = "Sukses";
+            JOptionPane.showMessageDialog(this, pesan, "Pesan Delete", JOptionPane.INFORMATION_MESSAGE);
+            txtEmployeeId.setEnabled(true);
+            reset();
+        }
     }//GEN-LAST:event_btnDropActionPerformed
 
     private void tblEmployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmployeeMouseClicked
@@ -431,14 +441,11 @@ public class EmployeeView extends javax.swing.JInternalFrame {
         } catch (ParseException ex) {
             Logger.getLogger(EmployeeView.class.getName()).log(Level.SEVERE, null, ex);
         }
-//        date = new Date(sdate);
-//        dpHireDate.setDate(date);
         txtEmployeeId.setText(tblEmployee.getValueAt(row, 1).toString());
         txtFirstName.setText(tblEmployee.getValueAt(row, 2).toString());
         txtLastName.setText(tblEmployee.getValueAt(row, 3).toString());
         txtEmail.setText(tblEmployee.getValueAt(row, 4).toString());
         txtPhoneNumber.setText(tblEmployee.getValueAt(row, 5).toString());
-        
         cmbJobId.setSelectedItem(tblEmployee.getValueAt(row, 7).toString());
         txtSalary.setText(tblEmployee.getValueAt(row, 8).toString());
         String commission = tblEmployee.getValueAt(row, 9).toString();
