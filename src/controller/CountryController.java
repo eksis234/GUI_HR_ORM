@@ -35,7 +35,7 @@ private final InterfaceDAO idao;
     }
 
 
-    public List<Object> getAll() {
+    public Object getAll() {
         return idao.getAll();
     }
 

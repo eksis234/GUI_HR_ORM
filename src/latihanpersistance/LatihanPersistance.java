@@ -141,11 +141,11 @@ public class LatihanPersistance {
                 break;
             case 2: 
                 System.out.println("Country Id - Country Name - Region Id - Region Name");
-                for (Object object : cc.getAll()) {
-                    country = (Country) object;
-                    System.out.println(country.getCountryId() + " - " + country.getCountryName() + " - "
-                            + country.getRegionId().getRegionId() + " - " + country.getRegionId().getRegionName()); //" - "+country.getLocationList().size()) dianjurkan memakai for 
-                }  
+//                for (Object object : cc.getAll()) {
+//                    country = (Country) object;
+//                    System.out.println(country.getCountryId() + " - " + country.getCountryName() + " - "
+//                            + country.getRegionId().getRegionId() + " - " + country.getRegionId().getRegionName()); //" - "+country.getLocationList().size()) dianjurkan memakai for 
+//                }  
                 System.out.print("\nPilihan Fungsi ada 1. SaveOrUpdate 2. Delete 3. GetAllData 4. Search 5.GetById \nPilihan Fungsi : ");
                 fungsi = in.nextInt();
                 switch(fungsi){
@@ -157,30 +157,30 @@ public class LatihanPersistance {
                         country.setRegionId(region);
                         System.out.println(cc.saveOrUpdate(country));
                         System.out.println("Country Id - Country Name - Region Id - Region Name");
-                        for (Object object : cc.getAll()) {
-                            country = (Country) object;
-                            System.out.println(country.getCountryId() + " - " + country.getCountryName() + " - "
-                                    + country.getRegionId().getRegionId() + " - " + country.getRegionId().getRegionName()); //" - "+country.getLocationList().size()) dianjurkan memakai for 
-                        }
+//                        for (Object object : cc.getAll()) {
+//                            country = (Country) object;
+//                            System.out.println(country.getCountryId() + " - " + country.getCountryName() + " - "
+//                                    + country.getRegionId().getRegionId() + " - " + country.getRegionId().getRegionName()); //" - "+country.getLocationList().size()) dianjurkan memakai for 
+//                        }
                         break;
                     case 2: 
                         System.out.print("\nAnda memilih fungsi Delete \nMasukkan Country Id : "); inputId = in.next();
                         country = new Country(inputId);
                         cc.delete(country);
                         System.out.println("Country Id - Country Name - Region Id - Region Name");
-                        for (Object object : cc.getAll()) {
-                            country = (Country) object;
-                            System.out.println(country.getCountryId() + " - " + country.getCountryName() + " - "
-                                    + country.getRegionId().getRegionId() + " - " + country.getRegionId().getRegionName()); //" - "+country.getLocationList().size()) dianjurkan memakai for 
-                        }
+//                        for (Object object : cc.getAll()) {
+//                            country = (Country) object;
+//                            System.out.println(country.getCountryId() + " - " + country.getCountryName() + " - "
+//                                    + country.getRegionId().getRegionId() + " - " + country.getRegionId().getRegionName()); //" - "+country.getLocationList().size()) dianjurkan memakai for 
+//                        }
                         break;
                     case 3: 
                         System.out.println("\nAnda memilih fungsi GetAll \nCountry Id - Country Name - Region Id - Region Name");
-                        for (Object object : cc.getAll()) {
-                            country = (Country) object;
-                            System.out.println(country.getCountryId() + " - " + country.getCountryName() + " - "
-                                    + country.getRegionId().getRegionId() + " - " + country.getRegionId().getRegionName()); //" - "+country.getLocationList().size()) dianjurkan memakai for 
-                        }
+//                        for (Object object : cc.getAll()) {
+//                            country = (Country) object;
+//                            System.out.println(country.getCountryId() + " - " + country.getCountryName() + " - "
+//                                    + country.getRegionId().getRegionId() + " - " + country.getRegionId().getRegionName()); //" - "+country.getLocationList().size()) dianjurkan memakai for 
+//                        }
                         break;
                     case 4: 
                         System.out.print("\nAnda Memilih fungsi Search \nMasukkan Country Name : "); inputId = in.next();
