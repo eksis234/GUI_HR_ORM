@@ -38,13 +38,12 @@ public class JobController {
     }
     
     public boolean delete(String jobId) {
-        Job job = getById(jobId);
-        return idao.delete(job);
+        Job jobs = (Job) getById(jobId);
+        return idao.delete(jobs);
     }
     
     public Job getById(String jobId){
-        Job job = new Job(jobId);
-        return (Job) idao.getById(job);
+        return (Job) idao.getById(jobId);
     }
     
     public List<Object> getAll(){
