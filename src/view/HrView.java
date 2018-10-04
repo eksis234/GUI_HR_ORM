@@ -230,3 +230,4 @@ public class HrView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmRegions;
     // End of variables declaration//GEN-END:variables
 }
+
