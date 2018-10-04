@@ -220,7 +220,7 @@ public class HrView extends javax.swing.JFrame {
 
     private void jmLocationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmLocationsActionPerformed
         // TODO add your handling code here:
-        LocationView locationView = new LocationView();
+        LocationView locationView = new LocationView(sf);
         locationView.show();
         dpUtamaHr.add(locationView);
     }//GEN-LAST:event_jmLocationsActionPerformed
