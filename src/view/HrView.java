@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -150,7 +151,7 @@ public class HrView extends javax.swing.JFrame {
 
     private void jmLocationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmLocationsActionPerformed
         // TODO add your handling code here:
-        LocationView locationView = new LocationView();
+        LocationView locationView = new LocationView(sf);
         locationView.show();
         dpUtamaHr.add(locationView);
     }//GEN-LAST:event_jmLocationsActionPerformed
@@ -164,14 +165,14 @@ public class HrView extends javax.swing.JFrame {
 
     private void jmDepartmentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmDepartmentsActionPerformed
         // TODO add your handling code here:
-        DepartmentView departmentView = new DepartmentView();
+        DepartmentView departmentView = new DepartmentView(sf);
         departmentView.show();
         dpUtamaHr.add(departmentView);
     }//GEN-LAST:event_jmDepartmentsActionPerformed
 
     private void jmEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmEmployeesActionPerformed
         // TODO add your handling code here:
-        EmployeeView employeeView = new EmployeeView();
+        EmployeeView employeeView = new EmployeeView(sf);
         employeeView.show();
         dpUtamaHr.add(employeeView);
     }//GEN-LAST:event_jmEmployeesActionPerformed
@@ -231,4 +232,3 @@ public class HrView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmRegions;
     // End of variables declaration//GEN-END:variables
 }
-
