@@ -387,15 +387,28 @@ public class EmployeeView extends javax.swing.JInternalFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         String sdate = dpHireDate.getDate().toString();
-        SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formater = new SimpleDateFormat("yyyy/MM/dd");
         sdate = formater.format(dpHireDate.getDate());
         String manager = cmbManager.getSelectedItem().toString();
         String[] managers = manager.split("-");
-//        String jobId = jobController.get nunggu jobsearch dan departmentsearch
+        
+        String jobId="";
+        List<Object> objects = jobController.search("jobTitle", cmbJobId.getSelectedItem()+"");
+        for (Object object : objects) {
+            Job job = (Job) object;
+            jobId = job.getJobId();
+        }
+        
+        String departmentId="";
+        objects = departmentController.search("departmentName", cmbDepartment.getSelectedItem()+"");
+        for (Object object : objects) {
+            Department department = (Department) object;
+            departmentId = department.getDepartmentId().toString();
+        }
         JOptionPane.showMessageDialog(this, controller.saveOrUpdate(txtEmployeeId.getText(), txtFirstName.getText()
                 , txtLastName.getText(), txtEmail.getText(), txtPhoneNumber.getText(), sdate, txtSalary.getText()
-                , txtCommissionPct.getText(), cmbDepartment.getSelectedItem().toString(), managers[0]
-                , cmbJobId.getSelectedItem().toString()));
+                , txtCommissionPct.getText(), departmentId, managers[0]
+                , jobId));
         reset();
     }//GEN-LAST:event_btnSaveActionPerformed
 
