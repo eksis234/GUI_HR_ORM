@@ -15,10 +15,10 @@ import org.hibernate.SessionFactory;
 
 /**
  *
- * @author Lenovo
+ * @author Lenovo no
  */
 public class CountryController {
-private InterfaceDAO idao;
+private final InterfaceDAO idao;
 
     public CountryController(SessionFactory sessionFactory) {
 //        this.type = type;
