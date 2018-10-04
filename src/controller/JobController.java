@@ -71,7 +71,11 @@ public class JobController {
      * @return mengembalikan hasil pencarian dalam bentuk List<Object>
      */
     public List<Object> search(String category, String key){
-        return idao.search(category, key);
+        if (category.equals("jobId") || category.equals("jobTitle")){
+            return idao.search(category, key);
+        } else {
+            return idao.search(category, new Integer(key));
+        } 
     }
 
 }
