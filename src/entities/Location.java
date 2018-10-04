@@ -117,6 +117,17 @@ public class Location implements Serializable {
         this.countryId = countryId;
     }
 
+    public Location(Short locationId, String streetAddress, String postalCode, String city, String stateProvince, Country countryId) {
+        this.locationId = locationId;
+        this.streetAddress = streetAddress;
+        this.postalCode = postalCode;
+        this.city = city;
+        this.stateProvince = stateProvince;
+        this.countryId = countryId;
+    }
+
+    
+    
     @XmlTransient
     public List<Department> getDepartmentList() {
         return departmentList;

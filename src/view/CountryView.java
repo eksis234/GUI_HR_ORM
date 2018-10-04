@@ -5,17 +5,21 @@
  */
 package view;
 
+import controller.CountryController;
+import org.hibernate.SessionFactory;
+
 /**
  *
  * @author Lenovo
  */
 public class CountryView extends javax.swing.JInternalFrame {
-
+    private final CountryController controller;
     /**
      * Creates new form CountryView
      */
-    public CountryView() {
+    public CountryView(SessionFactory sessionFactory) {
         initComponents();
+        controller = new CountryController(sessionFactory);
     }
 
     /**

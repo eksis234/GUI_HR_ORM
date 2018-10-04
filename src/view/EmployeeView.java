@@ -11,6 +11,7 @@ package view;
  */
 public class EmployeeView extends javax.swing.JInternalFrame {
 
+    
     /**
      * Creates new form EmployeeView
      */

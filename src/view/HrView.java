@@ -5,17 +5,21 @@
  */
 package view;
 
+import org.hibernate.SessionFactory;
+import tools.HibernateUtil;
+
 /**
  *
  * @author Lenovo
  */
 public class HrView extends javax.swing.JFrame {
-
+    private final SessionFactory sf;
     /**
      * Creates new form HRView
      */
     public HrView() {
         initComponents();
+        this.sf = HibernateUtil.getSessionFactory();
     }
 
     /**
@@ -138,7 +142,7 @@ public class HrView extends javax.swing.JFrame {
 
     private void jmCountriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCountriesActionPerformed
         // TODO add your handling code here:
-        CountryView countryView = new CountryView();
+        CountryView countryView = new CountryView(sf);
         countryView.show();
         dpUtamaHr.add(countryView);
     }//GEN-LAST:event_jmCountriesActionPerformed
