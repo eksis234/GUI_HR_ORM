@@ -9,7 +9,9 @@ package controller;
 import daos.GeneralDAO;
 import daos.InterfaceDAO;
 import entities.Country;
+import entities.Region;
 import java.util.List;
+import javax.swing.JComboBox;
 import org.hibernate.SessionFactory;
 
 /**
@@ -18,10 +20,11 @@ import org.hibernate.SessionFactory;
  */
 public class CountryController {
 private final InterfaceDAO idao;
-
+    private RegionController rc;
     public CountryController(SessionFactory sessionFactory) {
 //        this.type = type;
         idao = new GeneralDAO(sessionFactory, Country.class);
+        rc = new RegionController(sessionFactory);
     }
 
   
@@ -33,6 +36,14 @@ private final InterfaceDAO idao;
     public boolean delete(Object object) {
         return idao.delete(object);
     }
+    
+    public void loadCmbCountry(JComboBox cmb){
+        List<Object> objects = (List<Object>) rc.getAll();
+        for (Object object : objects) {
+            Region region  = (Region) object;
+            cmb.addItem(region.getRegionId()+" - "+region.getRegionName());
+        }
+    }
 
 
     public Object getAll() {
@@ -41,7 +52,22 @@ private final InterfaceDAO idao;
 
 
     public Object search(String category, Object key) {
-        return idao.search(category, key);
+        if(category.equals("countryId")){
+            return idao.search(category, key);
+        }
+        else if (category.equals("countryName")){
+            return idao.search("countryName", key);
+        }
+        else if(category.equals("regionId")){
+            return idao.search(category, (Region) rc.getById((key+"")));
+        }
+        //if(category.equals("RegionName"))
+        else if(category.equals("regionName")){
+            return idao.search("regionName", key);
+        }
+        else{
+            return idao.search(category, new Short(key+""));
+        }
     }
 
 
