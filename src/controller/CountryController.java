@@ -28,16 +28,28 @@ private final InterfaceDAO idao;
         rc = new RegionController(sessionFactory);
     }
 
-  
+  /**
+   * Dok Save or update
+   * @param object get object country
+   * @return get save or update
+   */
     public boolean saveOrUpdate(Object object) {
         return idao.saveOrUpdate(object);
     }
 
-
+    /**
+     * dok delete
+     * @param object get object country
+     * @return get hasil delete
+     */
     public boolean delete(Object object) {
         return idao.delete(object);
     }
     
+    /**
+     * dok selectitem
+     * @param cmb get combobok
+     */
     public void loadCmbCountry(JComboBox cmb){
         List<Object> objects = (List<Object>) rc.getAll();
         for (Object object : objects) {
@@ -46,21 +58,34 @@ private final InterfaceDAO idao;
         }
     }
 
-
+    /**
+     * dok getAll
+     * @return get hasil GetAll country
+     */
     public List<Object> getAll() {
         return idao.getAll();
     }
 
-
+    /**
+     * dok search country
+     * @param category berupa string
+     * @param key berupa object
+     * @return get hasil search
+     */
     public List<Object> search(String category, Object key) {
         System.out.println(category+"-"+key);  
         if(category.equals("regionId")){
+            //return idao.search("regionId", key);
             return idao.search(category, (Region) rc.getById((String) (key)));
         }
         else return idao.search(category, key);   
     }
 
-
+    /**
+     * dok getById Country
+     * @param countryId berupa string
+     * @return get hasil getById
+     */
     public Object getById(String countryId) {
         return idao.getById(countryId);
     }

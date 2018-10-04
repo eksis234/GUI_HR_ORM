@@ -225,6 +225,10 @@ public class CountryView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCountryNameActionPerformed
 
+    /**
+     * dok table country mouse klik
+     * @param evt eventnya
+     */
     private void tblCountryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCountryMouseClicked
         // TODO add your handling code here:
         int row = tblCountry.getSelectedRow();
@@ -234,6 +238,10 @@ public class CountryView extends javax.swing.JInternalFrame {
         edit();       
     }//GEN-LAST:event_tblCountryMouseClicked
 
+    /**
+     * dokk txtfindCountry key released
+     * @param evt event
+     */
     private void txtFindCountryKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFindCountryKeyReleased
         // TODO add your handling code here:
         if (txtFindCountry.getText().equals("")) {
@@ -251,10 +259,18 @@ public class CountryView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtFindCountryKeyReleased
 
+    /**
+     * dok txtCountryId
+     * @param evt event
+     */
     private void txtCountryIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCountryIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCountryIdActionPerformed
 
+    /**
+     * dok btnSaveOrUpdate
+     * @param evt event
+     */
     private void btnSaveCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveCActionPerformed
         // TODO add your handling code here:
         String abcd = cmbRegionId.getSelectedItem()+"";
@@ -280,6 +296,10 @@ public class CountryView extends javax.swing.JInternalFrame {
        cmbRegionId.setSelectedIndex(0);
     }//GEN-LAST:event_btnSaveCActionPerformed
 
+    /**
+     * dok btnDrop
+     * @param evt event
+     */
     private void btnDropCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDropCActionPerformed
         // TODO add your handling code here:
         int response = JOptionPane.showConfirmDialog(null, "Do you really want to delete?","Pertanyaan",JOptionPane.YES_NO_OPTION);
@@ -296,12 +316,20 @@ public class CountryView extends javax.swing.JInternalFrame {
         cmbRegionId.setSelectedIndex(0);
     }//GEN-LAST:event_btnDropCActionPerformed
 
+    /**
+     * dok cmbRegionId
+     * @param evt event
+     */
     private void cmbRegionIdMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbRegionIdMouseEntered
         // TODO add your handling code here:
         String abd = cmbRegionId.getSelectedItem()+"";
         String subAbd = abd.substring(0,1);
     }//GEN-LAST:event_cmbRegionIdMouseEntered
 
+    /**
+     * dok btnFind
+     * @param evt event
+     */
     private void btnFindCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindCActionPerformed
         // TODO add your handling code here:
         if (!txtFindCountry.getText().equalsIgnoreCase("")) { 
@@ -333,6 +361,10 @@ public class CountryView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtFindCountry;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * dok bindingCountries
+     * @param countrys berupa list<object>
+     */
 private void bindingCountries(List<Object> countrys) {
     String [] header = {"No","Country Id","Country Name","Region Name"};
         String [][] data = new String[countrys.size()][header.length];
@@ -349,16 +381,21 @@ private void bindingCountries(List<Object> countrys) {
         reset();     
     }
     
+    /**
+     * dok reset
+     */
     public  void reset(){
         txtCountryId.setText("");
         txtCountryId.setEnabled(true);
         txtCountryName.setText("");
-//        cmbRegionId.setSelectedIndex(0);
         btnDropC.setEnabled(false);
         btnSaveC.setEnabled(true);
         btnFindC.setEnabled(false);
     }
     
+    /**
+     * dok edit
+     */
     private void edit(){
         txtCountryId.setEnabled(false);
         btnSaveC.setEnabled(true);
