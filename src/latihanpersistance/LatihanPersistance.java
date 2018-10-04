@@ -185,12 +185,12 @@ public class LatihanPersistance {
                     case 4: 
                         System.out.print("\nAnda Memilih fungsi Search \nMasukkan Country Name : "); inputId = in.next();
                         System.out.println("Country Id - Country Name - Region Id - Region Name");
-                        for (Object object : cc.search("countryName", inputId)) {
-                            country = (Country) object;
-                            System.out.println(country.getCountryId() + " - " + country.getCountryName() + " "
-                                    + "- " + country.getRegionId().getRegionId() + " - "
-                                    + country.getRegionId().getRegionName());
-                        }                      
+//                        for (Object object : cc.search("countryName", inputId)) {
+//                            country = (Country) object;
+//                            System.out.println(country.getCountryId() + " - " + country.getCountryName() + " "
+//                                    + "- " + country.getRegionId().getRegionId() + " - "
+//                                    + country.getRegionId().getRegionName());
+//                        }                      
                         break;
                     case 5: 
                         System.out.print("\nAnda Memilih fungsi GetById \nMasukkan Country Id : "); inputId = in.next();

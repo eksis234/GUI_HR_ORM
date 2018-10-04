@@ -7,7 +7,11 @@ package view;
 
 import controller.CountryController;
 import entities.Country;
+import entities.Region;
+import java.awt.event.KeyEvent;
+import java.math.BigDecimal;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -20,6 +24,7 @@ import org.hibernate.SessionFactory;
 public class CountryView extends javax.swing.JInternalFrame {
     private final CountryController controller;
     private TableRowSorter<TableModel> rowSorter;
+    private String[] cmbItem = {"Country_id","Country_Name","Region_Name"};
     /**
      * Creates new form CountryView
      */
@@ -42,13 +47,14 @@ public class CountryView extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtCountryId = new javax.swing.JTextField();
+        txtRegionId = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         cmbRegionId = new javax.swing.JComboBox<>();
         btnSaveC = new javax.swing.JButton();
         btnDropC = new javax.swing.JButton();
         txtCountryName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        txtCountryId = new javax.swing.JTextField();
         cmbKategoriCountry = new javax.swing.JComboBox<>();
         txtFindCountry = new javax.swing.JTextField();
         btnFindC = new javax.swing.JButton();
@@ -64,17 +70,27 @@ public class CountryView extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Country Id       :");
 
-        txtCountryId.addActionListener(new java.awt.event.ActionListener() {
+        txtRegionId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCountryIdActionPerformed(evt);
+                txtRegionIdActionPerformed(evt);
             }
         });
 
         jLabel2.setText("Region Id         :");
 
         btnSaveC.setText("SAVE");
+        btnSaveC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveCActionPerformed(evt);
+            }
+        });
 
         btnDropC.setText("DROP");
+        btnDropC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDropCActionPerformed(evt);
+            }
+        });
 
         txtCountryName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,25 +100,33 @@ public class CountryView extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Country Name :");
 
+        txtCountryId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCountryIdActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                        .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCountryId)
-                            .addComponent(cmbRegionId, 0, 180, Short.MAX_VALUE)))
+                        .addComponent(txtCountryId, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCountryName, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtCountryName, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtRegionId, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cmbRegionId, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSaveC)
@@ -127,14 +151,21 @@ public class CountryView extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cmbRegionId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel2)
+                            .addComponent(txtRegionId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnDropC)
                         .addGap(24, 24, 24))))
         );
 
-        cmbKategoriCountry.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Country Id", "Country Name", "Region Id", "Region Name" }));
+        cmbKategoriCountry.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CountryId", "CountryName", "RegionId", "RegionName" }));
+
+        txtFindCountry.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtFindCountryKeyReleased(evt);
+            }
+        });
 
         btnFindC.setText("FIND");
 
@@ -190,9 +221,9 @@ public class CountryView extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCountryIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCountryIdActionPerformed
+    private void txtRegionIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRegionIdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCountryIdActionPerformed
+    }//GEN-LAST:event_txtRegionIdActionPerformed
 
     private void txtCountryNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCountryNameActionPerformed
         // TODO add your handling code here:
@@ -203,9 +234,65 @@ public class CountryView extends javax.swing.JInternalFrame {
         int row = tblCountry.getSelectedRow();
         txtCountryId.setText(tblCountry.getValueAt(row, 1).toString());
         txtCountryName.setText(tblCountry.getValueAt(row, 2).toString());
-        cmbRegionId.setSelectedItem(tblCountry.getValueAt(row, 3).toString());
+        txtRegionId.setText(tblCountry.getValueAt(row, 3).toString());
+        //cmbRegionId.setSelectedItem(tblCountry.getValueAt(row, 3).toString());
         edit();       
     }//GEN-LAST:event_tblCountryMouseClicked
+
+    private void txtFindCountryKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFindCountryKeyReleased
+        // TODO add your handling code here:
+        if (txtFindCountry.getText().equals("")) {
+                bindingCountries((List<Country>) controller.getAll()); 
+            }
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
+            bindingCountries((List<Country>) controller.search
+            ((String) cmbKategoriCountry.getSelectedItem(), 
+                    txtFindCountry.getText()));
+        }
+    }//GEN-LAST:event_txtFindCountryKeyReleased
+
+    private void txtCountryIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCountryIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCountryIdActionPerformed
+
+    private void btnSaveCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveCActionPerformed
+        // TODO add your handling code here:
+        String abcd = cmbRegionId.getSelectedItem()+"";
+        String subRegionId = abcd.substring(0,1);
+        Country country = new Country();
+        country = new Country(txtCountryId.getText());
+        country.setCountryName(txtCountryName.getText());
+        Region region = new Region(new BigDecimal(txtRegionId.getText())); 
+        country.setRegionId(region);
+        boolean isUpdate = false;
+        if(!txtCountryId.isEnabled()){
+            isUpdate = true;
+        }
+        if (isUpdate) {   
+            controller.saveOrUpdate(country);        //txtCountryId.getText(),txtCountryName.getText(),  subRegionId, false);
+            JOptionPane.showMessageDialog(this, "Pesan Update", "Judul", JOptionPane.INFORMATION_MESSAGE);
+            bindingCountries((List<Country>) controller.getAll());}
+        else {controller.saveOrUpdate(country);    //txtCountryId.getText(),txtCountryName.getText(), subRegionId, true);
+            JOptionPane.showMessageDialog(this, "Pesan Simpan", "Judul", JOptionPane.INFORMATION_MESSAGE);
+            bindingCountries((List<Country>) controller.getAll());
+            txtCountryId.setEditable(true);                       
+         }   
+    }//GEN-LAST:event_btnSaveCActionPerformed
+
+    private void btnDropCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDropCActionPerformed
+        // TODO add your handling code here:
+        int response = JOptionPane.showConfirmDialog(null, "Do you really want to delete?","Pertanyaan",JOptionPane.YES_NO_OPTION);
+        Country country = new Country();
+        country = new Country(txtCountryId.getText());
+        if (response == JOptionPane.YES_OPTION) {
+        controller.delete(country);
+        JOptionPane.showMessageDialog(this, "Pesan Delete", "Judul", JOptionPane.INFORMATION_MESSAGE);
+        }else if (response == JOptionPane.NO_OPTION) {
+            JOptionPane.showMessageDialog(this, "Tidak Jadi Hapus", "Pesan Batal Delete", JOptionPane.INFORMATION_MESSAGE);
+            bindingCountries((List<Country>) controller.getAll());
+        }       
+        bindingCountries((List<Country>) controller.getAll());
+    }//GEN-LAST:event_btnDropCActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -223,6 +310,7 @@ public class CountryView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtCountryId;
     private javax.swing.JTextField txtCountryName;
     private javax.swing.JTextField txtFindCountry;
+    private javax.swing.JTextField txtRegionId;
     // End of variables declaration//GEN-END:variables
 
 private void bindingCountries(List<Country> countrys) {
@@ -243,6 +331,7 @@ private void bindingCountries(List<Country> countrys) {
         txtCountryId.setText("");
         txtCountryId.setEnabled(true);
         txtCountryName.setText("");
+        txtRegionId.setText("");
         btnDropC.setEnabled(false);
         btnSaveC.setEnabled(true);
         btnFindC.setEnabled(false);

@@ -40,7 +40,7 @@ private final InterfaceDAO idao;
     }
 
 
-    public List<Object> search(String category, Object key) {
+    public Object search(String category, Object key) {
         return idao.search(category, key);
     }
 
