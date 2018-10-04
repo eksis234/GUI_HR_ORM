@@ -112,44 +112,41 @@ public class DepartmentControllerTest {
         Object result = instance.getNewId();
         assertNotNull(result);
     }
-//
-//    /**
-//     * Test of loadCmbDepartmentName method, of class DepartmentController.
-//     */
-//    @Test
-//    public void testLoadCmbDepartmentName() {
-//        System.out.println("loadCmbDepartmentName");
-//        JComboBox cmb = null;
-//        DepartmentController instance = null;
-//        instance.loadCmbDepartmentName(cmb);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of loadCmbManagerId method, of class DepartmentController.
-//     */
-//    @Test
-//    public void testLoadCmbManagerId() {
-//        System.out.println("loadCmbManagerId");
-//        JComboBox cmb = null;
-//        DepartmentController instance = null;
-//        instance.loadCmbManagerId(cmb);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of loadCmbLocationId method, of class DepartmentController.
-//     */
-//    @Test
-//    public void testLoadCmbLocationId() {
-//        System.out.println("loadCmbLocationId");
-//        JComboBox cmb = null;
-//        DepartmentController instance = null;
-//        instance.loadCmbLocationId(cmb);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+
+    /**
+     * Test of loadCmbDepartmentName method, of class DepartmentController.
+     */
+    @Test
+    public void testLoadCmbDepartmentName() {
+        System.out.println("loadCmbDepartmentName");
+        JComboBox cmb = new JComboBox();
+        DepartmentController instance = new DepartmentController(tools.HibernateUtil.getSessionFactory());
+        instance.loadCmbDepartmentName(cmb);
+        assertNotNull(instance);
+    }
+
+    /**
+     * Test of loadCmbManagerId method, of class DepartmentController.
+     */
+    @Test
+    public void testLoadCmbManagerId() {
+        System.out.println("loadCmbManagerId");
+        JComboBox cmb = new JComboBox();
+        DepartmentController instance = new DepartmentController(tools.HibernateUtil.getSessionFactory());
+        instance.loadCmbManagerId(cmb);
+        assertNotNull(instance);
+    }
+
+    /**
+     * Test of loadCmbLocationId method, of class DepartmentController.
+     */
+    @Test
+    public void testLoadCmbLocationId() {
+        System.out.println("loadCmbLocationId");
+        JComboBox cmb = new JComboBox();
+        DepartmentController instance = new DepartmentController(tools.HibernateUtil.getSessionFactory());
+        instance.loadCmbLocationId(cmb);
+        assertNotNull(instance);
+    }
     
 }
