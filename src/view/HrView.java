@@ -6,7 +6,19 @@
  */
 package view;
 
+import java.io.File;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JInternalFrame;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JRViewer;
 import org.hibernate.SessionFactory;
+import org.hibernate.engine.jdbc.connections.spi.ConnectionProvider;
 import tools.HibernateUtil;
 
 /**
@@ -14,14 +26,16 @@ import tools.HibernateUtil;
  * @author Lenovo
  */
 public class HrView extends javax.swing.JFrame {
+
     private final SessionFactory sf;
+
     /**
      * Creates new form HRView
      */
     public HrView() {
         initComponents();
         this.sf = HibernateUtil.getSessionFactory();
-        
+
     }
 
     /**
@@ -192,9 +206,9 @@ public class HrView extends javax.swing.JFrame {
 
     private void jmRegionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmRegionsActionPerformed
         // TODO add your handling code here:
-         RegionView regionView = new RegionView(sf);
-         regionView.show();
-         dpUtamaHr.add(regionView);
+        RegionView regionView = new RegionView(sf);
+        regionView.show();
+        dpUtamaHr.add(regionView);
     }//GEN-LAST:event_jmRegionsActionPerformed
 
     private void jmCountriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCountriesActionPerformed
@@ -254,6 +268,25 @@ public class HrView extends javax.swing.JFrame {
 
     private void mniEmployeeReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniEmployeeReportActionPerformed
         // TODO add your handling code here:
+        String path = "view.report/EmployeeReport.jasper";
+        HashMap parameter = new HashMap();
+        File reportFile = new File(path);
+        Connection connection = null;
+        try {
+            connection = sf.getSessionFactoryOptions().getServiceRegistry().
+                    getService(ConnectionProvider.class).getConnection();
+            InputStream jReport = this.getClass().getClassLoader().getResourceAsStream(reportFile.getPath());
+            JasperPrint jPrint = JasperFillManager.fillReport(jReport, parameter, connection);
+            JInternalFrame frame = new JInternalFrame("Report");
+            frame.getContentPane().add(new JRViewer(jPrint));
+            frame.pack();
+            frame.setResizable(true);
+            frame.setClosable(true);
+            frame.setMaximizable(true);
+            frame.setSize(1000, 700);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_mniEmployeeReportActionPerformed
 
     /**
