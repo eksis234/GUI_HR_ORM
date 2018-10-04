@@ -163,7 +163,7 @@ public class HrView extends javax.swing.JFrame {
 
     private void jmDepartmentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmDepartmentsActionPerformed
         // TODO add your handling code here:
-        DepartmentView departmentView = new DepartmentView();
+        DepartmentView departmentView = new DepartmentView(sf);
         departmentView.show();
         dpUtamaHr.add(departmentView);
     }//GEN-LAST:event_jmDepartmentsActionPerformed
