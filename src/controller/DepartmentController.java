@@ -60,7 +60,7 @@ public class DepartmentController {
     
     public Object getNewId(){
         Department department =  (Department) iDAO.getLastId();
-        return department.getDepartmentId() + 1;
+        return department.getDepartmentId() + 10;
     }
     
     public void loadCmbDepartmentName(JComboBox cmb){
