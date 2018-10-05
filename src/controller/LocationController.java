@@ -10,6 +10,7 @@ import daos.InterfaceDAO;
 import entities.Country;
 import entities.Location;
 import java.util.List;
+import javax.swing.JComboBox;
 import org.hibernate.SessionFactory;
 
 /**
@@ -17,7 +18,9 @@ import org.hibernate.SessionFactory;
  * @author USER
  */
 public class LocationController {
-   private final InterfaceDAO iDAO;
+
+    private final InterfaceDAO iDAO;
+    private CountryController countryController;
 
     public LocationController(SessionFactory sessionFactory) {
         iDAO = new GeneralDAO(sessionFactory, Location.class);
@@ -45,7 +48,18 @@ public class LocationController {
     public List<Object> searchLoc(String Category, Object key) {
         return iDAO.search(Category, key);
     }
-    
-    
-    
+
+    public Object loadMaxId() {
+        Location location = (Location) iDAO.getLastId();
+        return location.getLocationId() + 100;
+    }
+
+    public void loadCmb(JComboBox cmb) {
+        List<Object> objects = countryController.getAll();
+        for (Object object : objects) {
+            Country country = (Country) object;
+            cmb.addItem(country.getCountryId() + " - " + country.getCountryName());
+        }
+    }
+
 }

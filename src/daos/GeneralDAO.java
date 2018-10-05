@@ -5,8 +5,6 @@
  */
 package daos;
 
-import entities.Region;
-import java.math.BigDecimal;
 import java.util.List;
 import org.hibernate.SessionFactory;
 
