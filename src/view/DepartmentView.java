@@ -5,17 +5,46 @@
  */
 package view;
 
+import controller.DepartmentController;
+import controller.EmployeeController;
+import controller.LocationController;
+import daos.GeneralDAO;
+import entities.Department;
+import entities.Employee;
+import entities.Location;
+import java.awt.event.KeyEvent;
+import java.util.List;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import org.hibernate.SessionFactory;
+import tools.HibernateUtil;
+
 /**
  *
- * @author Lenovo
+ * @author Martin
  */
 public class DepartmentView extends javax.swing.JInternalFrame {
 
+//    private final GeneralDAO gdao;
+    private final DepartmentController controller;
+    private EmployeeController employeeController;
+    private String[] cmbItem = {"departmentId", "departmentName", "managerId", "locationId"};
+    
+    
     /**
      * Creates new form DepartmentView
      */
-    public DepartmentView() {
+    public DepartmentView(SessionFactory sessionFactory) {
         initComponents();
+        //this.gdao = new GeneralDAO(HibernateUtil.getSessionFactory(), Department.class);
+        controller = new DepartmentController(sessionFactory);
+        employeeController = new EmployeeController(sessionFactory);
+       // Object ambilSemua = controller.getAll();
+        bindingDepartment(controller.getAll());
+        controller.loadCmbDepartmentName(cmbDepartmentName);
+        controller.loadCmbLocationId(cmbLocationId);
+        controller.loadCmbManagerId(cmbManagerId);
     }
 
     /**
@@ -27,45 +56,87 @@ public class DepartmentView extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
+        txtSearch = new javax.swing.JTextField();
+        cmbKategori = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        txtCountryId = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        btnSaveC = new javax.swing.JButton();
-        btnDropC = new javax.swing.JButton();
-        btnFind = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblDepartment = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        txtDepartmentId = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        cmbDepartmentName = new javax.swing.JComboBox<>();
+        cmbManagerId = new javax.swing.JComboBox<>();
+        cmbLocationId = new javax.swing.JComboBox<>();
+        btnDelete = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
 
         setClosable(true);
-        setIconifiable(true);
         setMaximizable(true);
-        setTitle("Master Departments");
+        setResizable(true);
+        setTitle("Department");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jTextField1.setText("jTextField1");
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 0, 204)), "Countries Detail", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
-
-        jLabel1.setText("Country Id      :");
-
-        txtCountryId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCountryIdActionPerformed(evt);
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
             }
         });
 
-        jLabel2.setText("jLabel2");
+        cmbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Department ID", "Department Name", "Manager ID", "Location ID" }));
+        cmbKategori.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbKategoriActionPerformed(evt);
+            }
+        });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel1.setText("Search :");
 
-        btnSaveC.setText("SAVE");
+        tblDepartment.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        btnDropC.setText("DROP");
+            },
+            new String [] {
+
+            }
+        ));
+        tblDepartment.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDepartmentMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblDepartment);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Info", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 0, 18))); // NOI18N
+
+        jLabel2.setText("Department ID :");
+
+        txtDepartmentId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDepartmentIdActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Department Name :");
+
+        jLabel4.setText("Manager ID :");
+
+        jLabel5.setText("Location ID :");
+
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -74,106 +145,214 @@ public class DepartmentView extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtCountryId)
-                    .addComponent(jComboBox1, 0, 180, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSaveC)
-                    .addComponent(btnDropC))
-                .addGap(57, 57, 57))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(20, 20, 20)
+                        .addComponent(txtDepartmentId, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cmbLocationId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cmbManagerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbDepartmentName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 290, Short.MAX_VALUE)
+                        .addComponent(btnSave)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDelete))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(txtCountryId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnSaveC))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                        .addComponent(btnDropC)
-                        .addGap(24, 24, 24))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtDepartmentId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(cmbDepartmentName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(cmbManagerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(cmbLocationId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDelete)
+                    .addComponent(btnSave)))
         );
-
-        btnFind.setText("FIND");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(cmbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnFind)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnFind))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCountryIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCountryIdActionPerformed
+    private void cmbKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKategoriActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCountryIdActionPerformed
+    }//GEN-LAST:event_cmbKategoriActionPerformed
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if(!txtSearch.getText().equalsIgnoreCase("")){
+                    bindingDepartment(controller.search(cmbItem[cmbKategori.getSelectedIndex()], txtSearch.getText()));
+            }
+        }
+        if (txtSearch.getText().equals("")) {
+            bindingDepartment(controller.getAll());
+        }
+    }//GEN-LAST:event_txtSearchKeyReleased
+
+    private void tblDepartmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDepartmentMouseClicked
+        // TODO add your handling code here:
+        int row = tblDepartment.getSelectedRow();
+        txtDepartmentId.setText(tblDepartment.getValueAt(row, 1).toString());
+        cmbDepartmentName.setSelectedItem(tblDepartment.getValueAt(row, 2).toString());
+        if(tblDepartment.getValueAt(row, 3) == null) cmbManagerId.setSelectedItem(null);
+        else cmbManagerId.setSelectedItem(tblDepartment.getValueAt(row, 3).toString());
+        cmbLocationId.setSelectedItem(tblDepartment.getValueAt(row, 4).toString());
+        edit();
+    }//GEN-LAST:event_tblDepartmentMouseClicked
+
+    /**
+     * Melakukan simpan atau update saat tombol save di tekan
+     * @param evt jenis event
+     */
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        if(!txtDepartmentId.isEnabled()){
+            controller.saveOrUpdate(txtDepartmentId.getText(), cmbDepartmentName.getSelectedItem().toString(),
+            cmbManagerId.getSelectedItem().toString(), cmbLocationId.getSelectedItem().toString());
+            JOptionPane.showMessageDialog(this, "Update Success", "Update", JOptionPane.INFORMATION_MESSAGE);
+            bindingDepartment(controller.getAll());
+            reset();
+        }
+        else{
+            controller.saveOrUpdate(txtDepartmentId.getText(), cmbDepartmentName.getSelectedItem().toString(),
+            cmbManagerId.getSelectedItem().toString(), cmbLocationId.getSelectedItem().toString());
+            JOptionPane.showMessageDialog(this, "Save Success", "Save", JOptionPane.INFORMATION_MESSAGE);
+            bindingDepartment(controller.getAll());
+            reset();
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int messageBox = JOptionPane.showConfirmDialog(this, "Are You Sure You Want to Delete This Data ?", "Delete", JOptionPane.YES_NO_OPTION ,JOptionPane.WARNING_MESSAGE);
+        if(messageBox == JOptionPane.YES_OPTION){
+            controller.delete(txtDepartmentId.getText());
+            bindingDepartment(controller.getAll());
+            reset();
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void txtDepartmentIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDepartmentIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDepartmentIdActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDropC;
-    private javax.swing.JButton btnFind;
-    private javax.swing.JButton btnSaveC;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JComboBox<String> cmbDepartmentName;
+    private javax.swing.JComboBox<String> cmbKategori;
+    private javax.swing.JComboBox<String> cmbLocationId;
+    private javax.swing.JComboBox<String> cmbManagerId;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField txtCountryId;
+    private javax.swing.JTable tblDepartment;
+    private javax.swing.JTextField txtDepartmentId;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
+
+     private void bindingDepartment(List<Object> department) {
+        String[] header = {"No", "Department ID", "Department Name", "Manager Name", "City"};
+        String[][] data = new String[department.size()][header.length];
+        int i = 0;
+        for (Object object : department) {
+            Department dept = (Department) object;
+            Employee employee = dept.getManagerId();
+            data[i][0] = (i + 1) + "";
+            data[i][1] = dept.getDepartmentId() + "";
+            data[i][2] = dept.getDepartmentName() + "";
+            if(employee!=null) data[i][3] = dept.getManagerId().getEmployeeId() + " - " + dept.getManagerId().getLastName()+ "";
+            data[i][4] = dept.getLocationId().getLocationId()+ " - " + dept.getLocationId().getCity() + "";
+            i++;
+        }
+        tblDepartment.setModel(new DefaultTableModel(data, header));
+        reset();
+    } 
+     
+    /**
+     * Menyalakan tombol delete dan mematikan textfield Department Id
+     */
+    private void edit() {
+        txtDepartmentId.setEnabled(false);
+        btnDelete.setEnabled(true);
+    }
+    
+    /**
+     * Mengeset textfield department Id dengan method autoId, menyalakan textfield dan menghilangkan kemampuan edit dari
+     * Department Id, mematikan tombol delete, mengembalikan seluruh combobox ke pilihan pertama
+     */
+    private void reset() {
+        txtDepartmentId.setText(controller.getNewId()+"");
+        txtDepartmentId.setEnabled(true);
+        btnDelete.setEnabled(false);
+        txtDepartmentId.setEditable(false);
+        cmbDepartmentName.setSelectedItem("Administration");
+        cmbManagerId.setSelectedItem("100 - King");
+        cmbLocationId.setSelectedItem("1000 - Roma");
+    }
+    
 }

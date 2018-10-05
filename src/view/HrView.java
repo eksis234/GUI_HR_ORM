@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,7 +6,19 @@
  */
 package view;
 
+import java.io.File;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JInternalFrame;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JRViewer;
 import org.hibernate.SessionFactory;
+import org.hibernate.engine.jdbc.connections.spi.ConnectionProvider;
 import tools.HibernateUtil;
 
 /**
@@ -13,14 +26,16 @@ import tools.HibernateUtil;
  * @author Lenovo
  */
 public class HrView extends javax.swing.JFrame {
+
     private final SessionFactory sf;
+
     /**
      * Creates new form HRView
      */
     public HrView() {
         initComponents();
         this.sf = HibernateUtil.getSessionFactory();
-        
+
     }
 
     /**
@@ -42,6 +57,12 @@ public class HrView extends javax.swing.JFrame {
         jmDepartments = new javax.swing.JMenuItem();
         jmEmployees = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        mniRegionReport = new javax.swing.JMenuItem();
+        mniCountryReport = new javax.swing.JMenuItem();
+        mniLocationReport = new javax.swing.JMenuItem();
+        mniJobReport = new javax.swing.JMenuItem();
+        mniDepartmentReport = new javax.swing.JMenuItem();
+        mniEmployeeReport = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("HR VIEW .ORM");
@@ -115,7 +136,56 @@ public class HrView extends javax.swing.JFrame {
 
         jMenuBar1.add(jmRegion);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Report");
+
+        mniRegionReport.setText("Region Report");
+        mniRegionReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniRegionReportActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniRegionReport);
+
+        mniCountryReport.setText("Country Report");
+        mniCountryReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniCountryReportActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniCountryReport);
+
+        mniLocationReport.setText("Location Report");
+        mniLocationReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniLocationReportActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniLocationReport);
+
+        mniJobReport.setText("Job Report");
+        mniJobReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniJobReportActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniJobReport);
+
+        mniDepartmentReport.setText("Department Report");
+        mniDepartmentReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniDepartmentReportActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniDepartmentReport);
+
+        mniEmployeeReport.setText("Employee Report");
+        mniEmployeeReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniEmployeeReportActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniEmployeeReport);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -136,9 +206,9 @@ public class HrView extends javax.swing.JFrame {
 
     private void jmRegionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmRegionsActionPerformed
         // TODO add your handling code here:
-         RegionView regionView = new RegionView(sf);
-         regionView.show();
-         dpUtamaHr.add(regionView);
+        RegionView regionView = new RegionView(sf);
+        regionView.show();
+        dpUtamaHr.add(regionView);
     }//GEN-LAST:event_jmRegionsActionPerformed
 
     private void jmCountriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCountriesActionPerformed
@@ -150,31 +220,74 @@ public class HrView extends javax.swing.JFrame {
 
     private void jmLocationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmLocationsActionPerformed
         // TODO add your handling code here:
-        LocationView locationView = new LocationView();
+        LocationView locationView = new LocationView(sf);
         locationView.show();
         dpUtamaHr.add(locationView);
     }//GEN-LAST:event_jmLocationsActionPerformed
 
     private void jmJobsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmJobsActionPerformed
         // TODO add your handling code here:
-        JobView jobView = new JobView();
+        JobView jobView = new JobView(sf);
         jobView.show();
         dpUtamaHr.add(jobView);
     }//GEN-LAST:event_jmJobsActionPerformed
 
     private void jmDepartmentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmDepartmentsActionPerformed
         // TODO add your handling code here:
-        DepartmentView departmentView = new DepartmentView();
+        DepartmentView departmentView = new DepartmentView(sf);
         departmentView.show();
         dpUtamaHr.add(departmentView);
     }//GEN-LAST:event_jmDepartmentsActionPerformed
 
     private void jmEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmEmployeesActionPerformed
         // TODO add your handling code here:
-        EmployeeView employeeView = new EmployeeView();
+        EmployeeView employeeView = new EmployeeView(sf);
         employeeView.show();
         dpUtamaHr.add(employeeView);
     }//GEN-LAST:event_jmEmployeesActionPerformed
+
+    private void mniRegionReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniRegionReportActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mniRegionReportActionPerformed
+
+    private void mniCountryReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniCountryReportActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mniCountryReportActionPerformed
+
+    private void mniLocationReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniLocationReportActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mniLocationReportActionPerformed
+
+    private void mniJobReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniJobReportActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mniJobReportActionPerformed
+
+    private void mniDepartmentReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDepartmentReportActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mniDepartmentReportActionPerformed
+
+    private void mniEmployeeReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniEmployeeReportActionPerformed
+        // TODO add your handling code here:
+        String path = "view.report/EmployeeReport.jasper";
+        HashMap parameter = new HashMap();
+        File reportFile = new File(path);
+        Connection connection = null;
+        try {
+            connection = sf.getSessionFactoryOptions().getServiceRegistry().
+                    getService(ConnectionProvider.class).getConnection();
+            InputStream jReport = this.getClass().getClassLoader().getResourceAsStream(reportFile.getPath());
+            JasperPrint jPrint = JasperFillManager.fillReport(jReport, parameter, connection);
+            JInternalFrame frame = new JInternalFrame("Report");
+            frame.getContentPane().add(new JRViewer(jPrint));
+            frame.pack();
+            frame.setResizable(true);
+            frame.setClosable(true);
+            frame.setMaximizable(true);
+            frame.setSize(1000, 700);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_mniEmployeeReportActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,5 +342,11 @@ public class HrView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmLocations;
     private javax.swing.JMenu jmRegion;
     private javax.swing.JMenuItem jmRegions;
+    private javax.swing.JMenuItem mniCountryReport;
+    private javax.swing.JMenuItem mniDepartmentReport;
+    private javax.swing.JMenuItem mniEmployeeReport;
+    private javax.swing.JMenuItem mniJobReport;
+    private javax.swing.JMenuItem mniLocationReport;
+    private javax.swing.JMenuItem mniRegionReport;
     // End of variables declaration//GEN-END:variables
 }
