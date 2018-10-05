@@ -42,7 +42,7 @@ public class RegionController {
      * @return iDAO mengembalikan nilai boolean
      */
     public boolean delete(String regionId){
-        Region region = new Region(new BigDecimal (regionId));
+        Region region = new Region(new BigDecimal(regionId));
         return iDAO.delete(region);
     }
     /**
@@ -57,7 +57,6 @@ public class RegionController {
     public Region getByName (String regionName){
         return (Region) iDAO.getByName(regionName);
     }
-    
     /**
      * Method untuk mengambil semua data yang ada pada tabel Region
      * @return iDAO mengembalikan nilai List
