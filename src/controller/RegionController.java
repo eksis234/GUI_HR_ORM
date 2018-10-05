@@ -42,7 +42,7 @@ public class RegionController {
      * @return iDAO mengembalikan nilai boolean
      */
     public boolean delete(String regionId){
-        Region region = new Region(new BigDecimal (regionId));
+        Region region = new Region(new BigDecimal(regionId));
         return iDAO.delete(region);
     }
     /**
