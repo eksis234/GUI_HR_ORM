@@ -51,7 +51,7 @@ public class RegionController {
      * @return iDAO mengembalikan nilai objek
      */
     public Region getById (String regionId){
-        return (Region) iDAO.getById(regionId);
+        return (Region) iDAO.getById(new BigDecimal(regionId));
     }
     /**
      * Method untuk mengambil semua data yang ada pada tabel Region
