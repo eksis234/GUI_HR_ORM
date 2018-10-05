@@ -1,254 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" >
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
-	<queryString>
-		<![CDATA[SELECT
-     EMPLOYEES."EMPLOYEE_ID" AS EMPLOYEES_EMPLOYEE_ID,
-     EMPLOYEES."FIRST_NAME" AS EMPLOYEES_FIRST_NAME,
-     EMPLOYEES."LAST_NAME" AS EMPLOYEES_LAST_NAME,
-     EMPLOYEES."EMAIL" AS EMPLOYEES_EMAIL,
-     EMPLOYEES."PHONE_NUMBER" AS EMPLOYEES_PHONE_NUMBER,
-     EMPLOYEES."HIRE_DATE" AS EMPLOYEES_HIRE_DATE,
-     EMPLOYEES."SALARY" AS EMPLOYEES_SALARY,
-     EMPLOYEES."COMMISSION_PCT" AS EMPLOYEES_COMMISSION_PCT,
-     EMPLOYEES."MANAGER_ID" AS EMPLOYEES_MANAGER_ID,
-     JOBS."JOB_TITLE" AS JOBS_JOB_TITLE,
-     DEPARTMENTS."DEPARTMENT_NAME" AS DEPARTMENTS_DEPARTMENT_NAME
-FROM
-     "HR"."JOBS" JOBS RIGHT JOIN "HR"."EMPLOYEES" EMPLOYEES ON JOBS."JOB_ID" = EMPLOYEES."JOB_ID"
-     LEFT JOIN "HR"."DEPARTMENTS" DEPARTMENTS ON EMPLOYEES."EMPLOYEE_ID" = DEPARTMENTS."MANAGER_ID"
-     AND DEPARTMENTS."DEPARTMENT_ID" = EMPLOYEES."DEPARTMENT_ID"
-ORDER BY 1]]>
-	</queryString>
-	<field name="EMPLOYEES_EMPLOYEE_ID" class="java.math.BigDecimal"/>
-	<field name="EMPLOYEES_FIRST_NAME" class="java.lang.String"/>
-	<field name="EMPLOYEES_LAST_NAME" class="java.lang.String"/>
-	<field name="EMPLOYEES_EMAIL" class="java.lang.String"/>
-	<field name="EMPLOYEES_PHONE_NUMBER" class="java.lang.String"/>
-	<field name="EMPLOYEES_HIRE_DATE" class="java.sql.Timestamp"/>
-	<field name="EMPLOYEES_SALARY" class="java.math.BigDecimal"/>
-	<field name="EMPLOYEES_COMMISSION_PCT" class="java.math.BigDecimal"/>
-	<field name="EMPLOYEES_MANAGER_ID" class="java.math.BigDecimal"/>
-	<field name="JOBS_JOB_TITLE" class="java.lang.String"/>
-	<field name="DEPARTMENTS_DEPARTMENT_NAME" class="java.lang.String"/>
-	<background>
-		<band splitType="Stretch"/>
-	</background>
-	<title>
-		<band height="43" splitType="Stretch">
-			<staticText>
-				<reportElement x="0" y="0" width="555" height="43" />
-				<textElement textAlignment="Center">
-					<font fontName="Serif" size="30"/>
-				</textElement>
-				<text><![CDATA[EMPLOYEE REPORT]]></text>
-			</staticText>
-		</band>
-	</title>
-	<pageHeader>
-		<band height="35" splitType="Stretch">
-			<textField>
-				<reportElement x="435" y="0" width="80" height="20" />
-				<textElement textAlignment="Right">
-					<font fontName="Serif"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
-			</textField>
-			<textField evaluationTime="Report">
-				<reportElement x="515" y="0" width="40" height="20" />
-				<textElement>
-					<font fontName="Serif"/>
-				</textElement>
-				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
-		</band>
-	</pageHeader>
-	<columnHeader>
-		<band height="21" splitType="Stretch">
-			<staticText>
-				<reportElement x="2" y="0" width="21" height="20" />
-				<textElement>
-					<font fontName="Serif"/>
-				</textElement>
-				<text><![CDATA[NO]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="23" y="0" width="20" height="20" />
-				<textElement>
-					<font fontName="Serif"/>
-				</textElement>
-				<text><![CDATA[ID]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="43" y="0" width="84" height="20" />
-				<textElement>
-					<font fontName="Serif"/>
-				</textElement>
-				<text><![CDATA[Full Name]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="127" y="0" width="48" height="20" />
-				<textElement>
-					<font fontName="Serif"/>
-				</textElement>
-				<text><![CDATA[Email]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="175" y="0" width="60" height="20" />
-				<textElement>
-					<font fontName="Serif"/>
-				</textElement>
-				<text><![CDATA[Phone]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="235" y="0" width="63" height="20" />
-				<textElement>
-					<font fontName="Serif"/>
-				</textElement>
-				<text><![CDATA[Hire Date]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="298" y="0" width="44" height="20" />
-				<textElement>
-					<font fontName="Serif"/>
-				</textElement>
-				<text><![CDATA[Job]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="342" y="0" width="39" height="20" />
-				<textElement>
-					<font fontName="Serif"/>
-				</textElement>
-				<text><![CDATA[Salary]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="381" y="0" width="64" height="20" />
-				<textElement>
-					<font fontName="Serif"/>
-				</textElement>
-				<text><![CDATA[Commission]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="445" y="0" width="47" height="20" />
-				<textElement>
-					<font fontName="Serif"/>
-				</textElement>
-				<text><![CDATA[Manager]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="492" y="0" width="63" height="20" />
-				<textElement>
-					<font fontName="Serif"/>
-				</textElement>
-				<text><![CDATA[Department]]></text>
-			</staticText>
-		</band>
-	</columnHeader>
-	<detail>
-		<band height="47" splitType="Stretch">
-			<textField>
-				<reportElement x="2" y="0" width="21" height="47" />
-				<textElement>
-					<font fontName="Serif"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="23" y="0" width="20" height="47" />
-				<textElement>
-					<font fontName="Serif"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{EMPLOYEES_EMPLOYEE_ID}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="43" y="0" width="84" height="47" />
-				<textElement>
-					<font fontName="Serif"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{EMPLOYEES_FIRST_NAME} + " " + $F{EMPLOYEES_LAST_NAME}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="127" y="0" width="48" height="47" />
-				<textElement>
-					<font fontName="Serif"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{EMPLOYEES_EMAIL}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="175" y="0" width="60" height="47" />
-				<textElement>
-					<font fontName="Serif"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{EMPLOYEES_PHONE_NUMBER}]]></textFieldExpression>
-			</textField>
-			<textField pattern="dd/MM/yyyy">
-				<reportElement x="235" y="0" width="63" height="47" />
-				<textElement>
-					<font fontName="Serif"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{EMPLOYEES_HIRE_DATE}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="298" y="0" width="44" height="47" />
-				<textElement>
-					<font fontName="Serif"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{JOBS_JOB_TITLE}]]></textFieldExpression>
-			</textField>
-			<textField pattern="###0.00">
-				<reportElement x="342" y="0" width="39" height="47" />
-				<textElement>
-					<font fontName="Serif"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{EMPLOYEES_SALARY}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="381" y="0" width="64" height="47" />
-				<textElement>
-					<font fontName="Serif"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{EMPLOYEES_COMMISSION_PCT}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="445" y="0" width="47" height="47" />
-				<textElement>
-					<font fontName="Serif"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{EMPLOYEES_MANAGER_ID}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="492" y="0" width="63" height="47" />
-				<textElement>
-					<font fontName="Serif"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{DEPARTMENTS_DEPARTMENT_NAME}]]></textFieldExpression>
-			</textField>
-		</band>
-	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch"/>
-	</columnFooter>
-	<pageFooter>
-		<band height="54" splitType="Stretch">
-			<textField>
-				<reportElement x="435" y="34" width="80" height="20" />
-				<textElement textAlignment="Right">
-					<font fontName="Serif"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
-			</textField>
-			<textField evaluationTime="Report">
-				<reportElement x="515" y="34" width="40" height="20" />
-				<textElement>
-					<font fontName="Serif"/>
-				</textElement>
-				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
-		</band>
-	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+    <background>
+        <band/>
+    </background>
+    <title>
+        <band height="79"/>
+    </title>
+    <pageHeader>
+        <band height="35"/>
+    </pageHeader>
+    <columnHeader>
+        <band height="61"/>
+    </columnHeader>
+    <detail>
+        <band height="125"/>
+    </detail>
+    <columnFooter>
+        <band height="45"/>
+    </columnFooter>
+    <pageFooter>
+        <band height="54"/>
+    </pageFooter>
+    <summary>
+        <band height="42"/>
+    </summary>
 </jasperReport>

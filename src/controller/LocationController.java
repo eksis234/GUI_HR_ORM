@@ -20,11 +20,10 @@ import org.hibernate.SessionFactory;
 public class LocationController {
 
     private final InterfaceDAO iDAO;
-    private final CountryController countryController;
+    private CountryController countryController;
 
     public LocationController(SessionFactory sessionFactory) {
         iDAO = new GeneralDAO(sessionFactory, Location.class);
-        countryController = new CountryController(sessionFactory);
     }
 
     public boolean saveOrUpdate(String locationId, String streetAddress, String postalCode, String city, String stateProvince, String countryId) {
@@ -56,10 +55,10 @@ public class LocationController {
     }
 
     public void loadCmb(JComboBox cmb) {
-        List<Object> objects = (List<Object>) countryController.getAll();
+        List<Object> objects = countryController.getAll();
         for (Object object : objects) {
             Country country = (Country) object;
-            cmb.addItem(country.getCountryId() + "-" + country.getCountryName());
+            cmb.addItem(country.getCountryId() + " - " + country.getCountryName());
         }
     }
 

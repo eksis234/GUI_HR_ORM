@@ -17,6 +17,5 @@ public interface InterfaceDAO {
     public List<Object> getAll();
     public List<Object> search(String category, Object key);
     public Object getById(Object id);
-    public Object getByName(Object name);
     public Object getLastId();
 }

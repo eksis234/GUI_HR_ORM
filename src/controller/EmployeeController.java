@@ -33,6 +33,10 @@ public class EmployeeController {
         return iDAO.getById(new Integer(employeeId));
     }
     
+    public Object search(String category, String value){
+        return iDAO.search(category, value);
+    }
+    
     public boolean delete(String employeeId){
         Employee employee =  (Employee) getById(employeeId);
         return iDAO.delete(employee);

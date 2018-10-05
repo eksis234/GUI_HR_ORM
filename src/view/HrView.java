@@ -7,7 +7,14 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.io.File;
+import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JInternalFrame;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -277,6 +284,20 @@ public class HrView extends javax.swing.JFrame {
 
     private void mniDepartmentReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDepartmentReportActionPerformed
         // TODO add your handling code here:
+        String path = "C:\\Users\\Martin\\Documents\\NetBeansProjects\\GUI_HR_ORM\\src\\view\\report\\DepartmentReport.jrxml";
+        Connection connection = null;
+        try {
+            connection = sf.getSessionFactoryOptions().getServiceRegistry().
+                    getService(ConnectionProvider.class).getConnection();
+            JasperDesign jasperDesign = JRXmlLoader.load(path);
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, connection);
+            JRViewer viewer = new JRViewer(jasperPrint);
+            dpUtamaHr.setLayout(new BorderLayout());
+            dpUtamaHr.add(viewer);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_mniDepartmentReportActionPerformed
 
     private void mniEmployeeReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniEmployeeReportActionPerformed
@@ -296,21 +317,6 @@ public class HrView extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        try {
-//            connection = sf.getSessionFactoryOptions().getServiceRegistry().
-//                    getService(ConnectionProvider.class).getConnection();
-//            InputStream jReport = this.getClass().getClassLoader().getResourceAsStream(reportFile.getPath());
-//            JasperPrint jPrint = JasperFillManager.fillReport(jReport, parameter, connection);
-//            JInternalFrame frame = new JInternalFrame("Report");
-//            frame.getContentPane().add(new JRViewer(jPrint));
-//            frame.pack();
-//            frame.setResizable(true);
-//            frame.setClosable(true);
-//            frame.setMaximizable(true);
-//            frame.setSize(1000, 700);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
     }//GEN-LAST:event_mniEmployeeReportActionPerformed
 
     /**
@@ -338,30 +344,6 @@ public class HrView extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(HrView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

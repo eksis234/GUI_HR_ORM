@@ -71,15 +71,11 @@ public class FunctionDAO {
                         .uniqueResult();
             case 3:
                 return session.createCriteria(type)
-                        .add(Restrictions.eq(category, key))
+                        .add(Restrictions.like(category, "%"+key+"%").ignoreCase())
                         .list();
             case 4:
                 return session.createQuery("FROM " + type
                         .getSimpleName() + " ORDER BY 1 DESC").list().get(0);
-            case 5:
-                return session.createCriteria(type)
-                        .add(Restrictions.eq(category, key))
-                        .uniqueResult();    
             default:
                 return session.createQuery("FROM " + type
                         .getSimpleName() + " ORDER BY 1").list();
