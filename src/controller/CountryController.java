@@ -20,8 +20,8 @@ import org.hibernate.SessionFactory;
  * @author Lenovo no
  */
 public class CountryController {
-private final InterfaceDAO idao;
-    private RegionController rc;
+    private final InterfaceDAO idao;
+    private final RegionController rc;
     public CountryController(SessionFactory sessionFactory) {
 //        this.type = type;
         idao = new GeneralDAO(sessionFactory, Country.class);
@@ -74,9 +74,10 @@ private final InterfaceDAO idao;
      */
     public List<Object> search(String category, Object key) {
         System.out.println(category+"-"+key);  
-        if(category.equals("regionId")){
-            //return idao.search("regionId", key);
-            return idao.search(category, (Region) rc.getById((String) (key)));
+        if(category.equals("regionName")){
+            return idao.search("regionId", (Region) rc.getByName(key+""));
+        }else if (category.equals("regionId")){
+            return idao.search(category, (Region) rc.getById(key+""));
         }
         else return idao.search(category, key);   
     }

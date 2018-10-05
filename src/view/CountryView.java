@@ -252,7 +252,9 @@ public class CountryView extends javax.swing.JInternalFrame {
         if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
             if (cmbKategoriCountry.getSelectedItem().equals("Region Id")){
             bindingCountries(controller.search("regionId", new BigDecimal(txtFindCountry.getText())));
-            } else if (cmbKategoriCountry.getSelectedItem().equals("Country Id")){
+            } else if (cmbKategoriCountry.getSelectedItem().equals("Region Name")){
+            bindingCountries(controller.search("regionName", txtFindCountry.getText()));
+            }else if (cmbKategoriCountry.getSelectedItem().equals("Country Id")){
             bindingCountries(controller.search("countryId", txtFindCountry.getText()));
             }else if (cmbKategoriCountry.getSelectedItem().equals("Country Name"))
             bindingCountries(controller.search("countryName", txtFindCountry.getText()));
@@ -335,9 +337,11 @@ public class CountryView extends javax.swing.JInternalFrame {
         if (!txtFindCountry.getText().equalsIgnoreCase("")) { 
             if (cmbKategoriCountry.getSelectedItem().equals("Region Id")){
             bindingCountries(controller.search("regionId", new BigDecimal(txtFindCountry.getText())));
-            } else if (cmbKategoriCountry.getSelectedItem().equals("Country Id")){
+            } else if (cmbKategoriCountry.getSelectedItem().equals("Region Name")){
+            bindingCountries(controller.search("regionName", txtFindCountry.getText()));
+            }else if (cmbKategoriCountry.getSelectedItem().equals("Country Id")){
             bindingCountries(controller.search("countryId", txtFindCountry.getText()));
-            }
+            }else if (cmbKategoriCountry.getSelectedItem().equals("Country Name"))
             bindingCountries(controller.search("countryName", txtFindCountry.getText()));            
             //bindingCountries(controller.search(cmbItem[cmbKategoriCountry.getSelectedIndex()], txtFindCountry.getText()));
         }
