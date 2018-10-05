@@ -47,46 +47,89 @@ public class Country implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Region regionId;
 
+    /**
+     * konstraktor country
+     */
     public Country() {
     }
 
+    /**
+     * dok kontraktor country id
+     * @param countryId berupa string
+     */
     public Country(String countryId) {
         this.countryId = countryId;
     }
 
+    /**
+     * dok get Countryid
+     * @return get countryId
+     */
     public String getCountryId() {
         return countryId;
     }
 
+    /**
+     * dok SetCountryId
+     * @param countryId berupa string 
+     */
     public void setCountryId(String countryId) {
         this.countryId = countryId;
     }
 
+    /**
+     * dok getCountryName
+     * @return get countryName
+     */
     public String getCountryName() {
         return countryName;
     }
 
+    /**
+     * dok setCountryName
+     * @param countryName berupa string 
+     */
     public void setCountryName(String countryName) {
         this.countryName = countryName;
     }
 
+    /**
+     * doc List Location
+     * @return get locationList
+     */
     @XmlTransient
     public List<Location> getLocationList() {
         return locationList;
     }
 
+    /**
+     * dok locationList
+     * @param locationList  berupa list locaation
+     */
     public void setLocationList(List<Location> locationList) {
         this.locationList = locationList;
     }
 
+    /**
+     * dok regionId
+     * @return get regionId
+     */
     public Region getRegionId() {
         return regionId;
     }
 
+    /**
+     * dok Region Id
+     * @param regionId berupa object region
+     */
     public void setRegionId(Region regionId) {
         this.regionId = regionId;
     }
 
+    /**
+     * dok hashcode
+     * @return get hash
+     */
     @Override
     public int hashCode() {
         int hash = 0;
@@ -94,6 +137,11 @@ public class Country implements Serializable {
         return hash;
     }
 
+    /**
+     * dok equels
+     * @param object berupa object
+     * @return get hasil equqls
+     */
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -107,6 +155,10 @@ public class Country implements Serializable {
         return true;
     }
 
+    /**
+     * dok tostring
+     * @return get string
+     */
     @Override
     public String toString() {
         return "entitas.Country[ countryId=" + countryId + " ]";

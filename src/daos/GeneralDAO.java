@@ -34,7 +34,7 @@ public class GeneralDAO implements InterfaceDAO{
 
     @Override
     public List<Object> getAll() {
-        return (List<Object>) gdao.execute(5, null, type, null, null);
+        return (List<Object>) gdao.execute(6, null, type, null, null);
     }
 
     @Override
@@ -50,6 +50,11 @@ public class GeneralDAO implements InterfaceDAO{
     @Override
     public Object getLastId(){
         return gdao.execute(4, null, type, null, null);
+    }
+
+    @Override
+    public Object getByName(Object name) {
+        return gdao.execute(5, null, type, type.getSimpleName().toLowerCase()+"Name", name);
     }
 
 }
