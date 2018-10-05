@@ -288,10 +288,10 @@ public class CountryView extends javax.swing.JInternalFrame {
         }
         if (isUpdate) {   
             controller.saveOrUpdate(country);        //txtCountryId.getText(),txtCountryName.getText(),  subRegionId, false);
-            JOptionPane.showMessageDialog(this, "Pesan Update", "Judul", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Pesan Update", "Update", JOptionPane.INFORMATION_MESSAGE);
             bindingCountries(controller.getAll());}
         else {controller.saveOrUpdate(country);    //txtCountryId.getText(),txtCountryName.getText(), subRegionId, true);
-            JOptionPane.showMessageDialog(this, "Pesan Simpan", "Judul", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Pesan Simpan", "Simpan", JOptionPane.INFORMATION_MESSAGE);
             bindingCountries(controller.getAll());
             txtCountryId.setEditable(true);                       
          }
@@ -309,9 +309,9 @@ public class CountryView extends javax.swing.JInternalFrame {
         country = new Country(txtCountryId.getText());
         if (response == JOptionPane.YES_OPTION) {
         controller.delete(country);
-        JOptionPane.showMessageDialog(this, "Pesan Delete", "Judul", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Pesan Delete", "Delete", JOptionPane.INFORMATION_MESSAGE);
         }else if (response == JOptionPane.NO_OPTION) {
-            JOptionPane.showMessageDialog(this, "Tidak Jadi Hapus", "Pesan Batal Delete", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Tidak Jadi Hapus", "Delete", JOptionPane.INFORMATION_MESSAGE);
             bindingCountries(controller.getAll());
         }       
         bindingCountries(controller.getAll());

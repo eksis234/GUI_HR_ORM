@@ -250,6 +250,21 @@ public class HrView extends javax.swing.JFrame {
 
     private void mniCountryReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniCountryReportActionPerformed
         // TODO add your handling code here:
+        //String path = "F:\\GitHub\\Re-clone\\GUI_HR_ORM\\src\\view\\report\\EmployeeReport.jrxml";
+        String path = "E:\\E\\MII\\Java\\GUI_HR_ORM\\build\\classes\\view\\report\\CountryReport.jrxml";
+        Connection connection = null;
+        try {
+            connection = sf.getSessionFactoryOptions().getServiceRegistry().
+                    getService(ConnectionProvider.class).getConnection();
+            JasperDesign jasperDesign = JRXmlLoader.load(path);
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, connection);
+            JRViewer viewer = new JRViewer(jasperPrint);
+            dpUtamaHr.setLayout(new BorderLayout());
+            dpUtamaHr.add(viewer);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_mniCountryReportActionPerformed
 
     private void mniLocationReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniLocationReportActionPerformed
@@ -266,7 +281,8 @@ public class HrView extends javax.swing.JFrame {
 
     private void mniEmployeeReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniEmployeeReportActionPerformed
         // TODO add your handling code here:
-        String path = "F:\\GitHub\\Re-clone\\GUI_HR_ORM\\src\\view\\report\\EmployeeReport.jrxml";
+        //String path = "F:\\GitHub\\Re-clone\\GUI_HR_ORM\\src\\view\\report\\EmployeeReport.jrxml";
+        String path = "E:\\E\\MII\\Java\\GUI_HR_ORM\\build\\classes\\view\\report\\EmployeeReport.jrxml";
         Connection connection = null;
         try {
             connection = sf.getSessionFactoryOptions().getServiceRegistry().
