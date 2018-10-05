@@ -1,29 +1,164 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
-
-<jasperReport name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-    <background>
-        <band/>
-    </background>
-    <title>
-        <band height="79"/>
-    </title>
-    <pageHeader>
-        <band height="35"/>
-    </pageHeader>
-    <columnHeader>
-        <band height="61"/>
-    </columnHeader>
-    <detail>
-        <band height="125"/>
-    </detail>
-    <columnFooter>
-        <band height="45"/>
-    </columnFooter>
-    <pageFooter>
-        <band height="54"/>
-    </pageFooter>
-    <summary>
-        <band height="42"/>
-    </summary>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="203146b0-df95-4fed-b352-58cab51ac72d">
+	<property name="ireport.zoom" value="1.4641000000000022"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     LOCATIONS."LOCATION_ID" AS LOCATIONS_LOCATION_ID,
+     LOCATIONS."STREET_ADDRESS" AS LOCATIONS_STREET_ADDRESS,
+     LOCATIONS."POSTAL_CODE" AS LOCATIONS_POSTAL_CODE,
+     LOCATIONS."CITY" AS LOCATIONS_CITY,
+     LOCATIONS."STATE_PROVINCE" AS LOCATIONS_STATE_PROVINCE,
+     LOCATIONS."COUNTRY_ID" AS LOCATIONS_COUNTRY_ID,
+     COUNTRIES."COUNTRY_ID" AS COUNTRIES_COUNTRY_ID,
+     COUNTRIES."COUNTRY_NAME" AS COUNTRIES_COUNTRY_NAME,
+     COUNTRIES."REGION_ID" AS COUNTRIES_REGION_ID
+FROM
+     "HR"."COUNTRIES" COUNTRIES INNER JOIN "HR"."LOCATIONS" LOCATIONS ON COUNTRIES."COUNTRY_ID" = LOCATIONS."COUNTRY_ID"]]>
+	</queryString>
+	<field name="LOCATIONS_LOCATION_ID" class="java.math.BigDecimal"/>
+	<field name="LOCATIONS_STREET_ADDRESS" class="java.lang.String"/>
+	<field name="LOCATIONS_POSTAL_CODE" class="java.lang.String"/>
+	<field name="LOCATIONS_CITY" class="java.lang.String"/>
+	<field name="LOCATIONS_STATE_PROVINCE" class="java.lang.String"/>
+	<field name="LOCATIONS_COUNTRY_ID" class="java.lang.String"/>
+	<field name="COUNTRIES_COUNTRY_ID" class="java.lang.String"/>
+	<field name="COUNTRIES_COUNTRY_NAME" class="java.lang.String"/>
+	<field name="COUNTRIES_REGION_ID" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="57" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="36" uuid="af24eb9c-f232-4f8a-bf80-f4742760b9ed"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LOCATION REPORT]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="273" y="36" width="126" height="20" uuid="87dbb193-37ef-4c22-a8cb-645be0c69a91"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="173" y="36" width="100" height="20" uuid="413472e9-6255-49ef-9e11-fb535e35d22e"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<text><![CDATA[PRINT DATE	:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="12" y="56" width="529" height="1" uuid="a76e465d-225e-420e-ac37-6fcf30cb7b0f"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="17" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="12" y="1" width="61" height="20" uuid="83a38b66-b266-441e-850e-0ccd53ff2aa4"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<text><![CDATA[LOCATION ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="73" y="1" width="115" height="20" uuid="044fc699-7b2f-43b6-8bae-a7bbb10d62ff"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<text><![CDATA[STREET ADDRESS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="188" y="1" width="85" height="20" uuid="150a70c3-dc09-4e16-83cb-ba7524eb1e0f"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<text><![CDATA[POSTAL CODE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="273" y="1" width="86" height="20" uuid="5916d53a-25bb-4346-967e-7ae244f7278d"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<text><![CDATA[CITY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="359" y="1" width="100" height="20" uuid="f1e7e2ef-6163-498d-9e1d-04fc38e1a4ca"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<text><![CDATA[STATE PROVINCE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="459" y="1" width="82" height="20" uuid="4f546992-09fd-4b5d-8dff-d756e461168e"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<text><![CDATA[COUNTRY NAME]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="42" splitType="Stretch">
+			<textField>
+				<reportElement x="73" y="5" width="115" height="20" uuid="0605048d-b990-42fe-a08a-1e7c3cf213c5"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LOCATIONS_STREET_ADDRESS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="12" y="5" width="61" height="20" uuid="c7ed73ec-41f0-4d04-bd0e-21304793a29c"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LOCATIONS_LOCATION_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="359" y="5" width="100" height="20" uuid="3b616798-0e8f-465a-a552-6357aec6626a"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LOCATIONS_STATE_PROVINCE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="459" y="5" width="82" height="20" uuid="ebfa52fe-3a7c-4a96-a1e6-3caf641a95ab"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COUNTRIES_COUNTRY_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="273" y="5" width="86" height="20" uuid="8b5e8282-bb2f-4b2f-bad8-8020364f7b59"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LOCATIONS_CITY}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="188" y="5" width="85" height="20" uuid="41b0437e-f531-4db9-9a6e-d37833558224"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LOCATIONS_POSTAL_CODE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="62" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
 </jasperReport>

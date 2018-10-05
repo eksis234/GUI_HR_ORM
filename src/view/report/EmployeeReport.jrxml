@@ -1,29 +1,117 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
-
-<jasperReport name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-    <background>
-        <band/>
-    </background>
-    <title>
-        <band height="79"/>
-    </title>
-    <pageHeader>
-        <band height="35"/>
-    </pageHeader>
-    <columnHeader>
-        <band height="61"/>
-    </columnHeader>
-    <detail>
-        <band height="125"/>
-    </detail>
-    <columnFooter>
-        <band height="45"/>
-    </columnFooter>
-    <pageFooter>
-        <band height="54"/>
-    </pageFooter>
-    <summary>
-        <band height="42"/>
-    </summary>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="397" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="947bacb2-2c4d-40f2-b24c-aa7bbcc302e1">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     EMPLOYEES."EMPLOYEE_ID" AS EMPLOYEES_EMPLOYEE_ID,
+     EMPLOYEES."FIRST_NAME" AS EMPLOYEES_FIRST_NAME,
+     EMPLOYEES."LAST_NAME" AS EMPLOYEES_LAST_NAME,
+     EMPLOYEES."EMAIL" AS EMPLOYEES_EMAIL,
+     EMPLOYEES."PHONE_NUMBER" AS EMPLOYEES_PHONE_NUMBER,
+     EMPLOYEES."HIRE_DATE" AS EMPLOYEES_HIRE_DATE,
+     EMPLOYEES."JOB_ID" AS EMPLOYEES_JOB_ID,
+     EMPLOYEES."SALARY" AS EMPLOYEES_SALARY,
+     EMPLOYEES."COMMISSION_PCT" AS EMPLOYEES_COMMISSION_PCT,
+     EMPLOYEES."MANAGER_ID" AS EMPLOYEES_MANAGER_ID,
+     EMPLOYEES."DEPARTMENT_ID" AS EMPLOYEES_DEPARTMENT_ID,
+     DEPARTMENTS."DEPARTMENT_ID" AS DEPARTMENTS_DEPARTMENT_ID,
+     DEPARTMENTS."DEPARTMENT_NAME" AS DEPARTMENTS_DEPARTMENT_NAME,
+     DEPARTMENTS."MANAGER_ID" AS DEPARTMENTS_MANAGER_ID,
+     DEPARTMENTS."LOCATION_ID" AS DEPARTMENTS_LOCATION_ID,
+     JOBS."JOB_ID" AS JOBS_JOB_ID,
+     JOBS."JOB_TITLE" AS JOBS_JOB_TITLE,
+     JOBS."MIN_SALARY" AS JOBS_MIN_SALARY,
+     JOBS."MAX_SALARY" AS JOBS_MAX_SALARY,
+     EMPLOYEES_A."EMPLOYEE_ID" AS EMPLOYEES_A_EMPLOYEE_ID,
+     EMPLOYEES_A."FIRST_NAME" AS EMPLOYEES_A_FIRST_NAME,
+     EMPLOYEES_A."LAST_NAME" AS EMPLOYEES_A_LAST_NAME,
+     EMPLOYEES_A."EMAIL" AS EMPLOYEES_A_EMAIL,
+     EMPLOYEES_A."PHONE_NUMBER" AS EMPLOYEES_A_PHONE_NUMBER,
+     EMPLOYEES_A."HIRE_DATE" AS EMPLOYEES_A_HIRE_DATE,
+     EMPLOYEES_A."JOB_ID" AS EMPLOYEES_A_JOB_ID,
+     EMPLOYEES_A."SALARY" AS EMPLOYEES_A_SALARY,
+     EMPLOYEES_A."COMMISSION_PCT" AS EMPLOYEES_A_COMMISSION_PCT,
+     EMPLOYEES_A."MANAGER_ID" AS EMPLOYEES_A_MANAGER_ID,
+     EMPLOYEES_A."DEPARTMENT_ID" AS EMPLOYEES_A_DEPARTMENT_ID
+FROM
+     "HR"."EMPLOYEES" EMPLOYEES INNER JOIN "HR"."DEPARTMENTS" DEPARTMENTS ON EMPLOYEES."EMPLOYEE_ID" = DEPARTMENTS."MANAGER_ID"
+     AND DEPARTMENTS."DEPARTMENT_ID" = EMPLOYEES."DEPARTMENT_ID"
+     INNER JOIN "HR"."JOBS" JOBS ON EMPLOYEES."JOB_ID" = JOBS."JOB_ID"
+     INNER JOIN "HR"."EMPLOYEES" EMPLOYEES_A ON EMPLOYEES."EMPLOYEE_ID" = EMPLOYEES_A."MANAGER_ID"
+     AND EMPLOYEES_A."EMPLOYEE_ID" = EMPLOYEES."MANAGER_ID"
+     AND JOBS."JOB_ID" = EMPLOYEES_A."JOB_ID"
+     AND DEPARTMENTS."DEPARTMENT_ID" = EMPLOYEES_A."DEPARTMENT_ID"
+     AND EMPLOYEES_A."EMPLOYEE_ID" = DEPARTMENTS."MANAGER_ID"]]>
+	</queryString>
+	<field name="EMPLOYEES_EMPLOYEE_ID" class="java.math.BigDecimal"/>
+	<field name="EMPLOYEES_FIRST_NAME" class="java.lang.String"/>
+	<field name="EMPLOYEES_LAST_NAME" class="java.lang.String"/>
+	<field name="EMPLOYEES_EMAIL" class="java.lang.String"/>
+	<field name="EMPLOYEES_PHONE_NUMBER" class="java.lang.String"/>
+	<field name="EMPLOYEES_HIRE_DATE" class="java.sql.Timestamp"/>
+	<field name="EMPLOYEES_JOB_ID" class="java.lang.String"/>
+	<field name="EMPLOYEES_SALARY" class="java.math.BigDecimal"/>
+	<field name="EMPLOYEES_COMMISSION_PCT" class="java.math.BigDecimal"/>
+	<field name="EMPLOYEES_MANAGER_ID" class="java.math.BigDecimal"/>
+	<field name="EMPLOYEES_DEPARTMENT_ID" class="java.math.BigDecimal"/>
+	<field name="DEPARTMENTS_DEPARTMENT_ID" class="java.math.BigDecimal"/>
+	<field name="DEPARTMENTS_DEPARTMENT_NAME" class="java.lang.String"/>
+	<field name="DEPARTMENTS_MANAGER_ID" class="java.math.BigDecimal"/>
+	<field name="DEPARTMENTS_LOCATION_ID" class="java.math.BigDecimal"/>
+	<field name="JOBS_JOB_ID" class="java.lang.String"/>
+	<field name="JOBS_JOB_TITLE" class="java.lang.String"/>
+	<field name="JOBS_MIN_SALARY" class="java.math.BigDecimal"/>
+	<field name="JOBS_MAX_SALARY" class="java.math.BigDecimal"/>
+	<field name="EMPLOYEES_A_EMPLOYEE_ID" class="java.math.BigDecimal"/>
+	<field name="EMPLOYEES_A_FIRST_NAME" class="java.lang.String"/>
+	<field name="EMPLOYEES_A_LAST_NAME" class="java.lang.String"/>
+	<field name="EMPLOYEES_A_EMAIL" class="java.lang.String"/>
+	<field name="EMPLOYEES_A_PHONE_NUMBER" class="java.lang.String"/>
+	<field name="EMPLOYEES_A_HIRE_DATE" class="java.sql.Timestamp"/>
+	<field name="EMPLOYEES_A_JOB_ID" class="java.lang.String"/>
+	<field name="EMPLOYEES_A_SALARY" class="java.math.BigDecimal"/>
+	<field name="EMPLOYEES_A_COMMISSION_PCT" class="java.math.BigDecimal"/>
+	<field name="EMPLOYEES_A_MANAGER_ID" class="java.math.BigDecimal"/>
+	<field name="EMPLOYEES_A_DEPARTMENT_ID" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="208" y="32" width="100" height="20" uuid="dd0d48a8-2d4b-4a80-b848-0c6acf7a212f"/>
+				<text><![CDATA[REPORT EMPLOYEE]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="345" y="2" width="100" height="20" uuid="f4fa699b-64a4-4c18-a1c4-4e40e5fc3c91"/>
+				<text><![CDATA[EMPLOYEE ID]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="345" y="56" width="100" height="20" uuid="92bd6730-264f-46c0-bd27-27d8ce309c5d"/>
+				<textFieldExpression><![CDATA[$F{EMPLOYEES_EMPLOYEE_ID}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
 </jasperReport>

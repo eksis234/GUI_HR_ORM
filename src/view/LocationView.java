@@ -387,10 +387,10 @@ public final class LocationView extends javax.swing.JInternalFrame {
 
     private void btnDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDropActionPerformed
         // TODO add your handling code here:
-        int ok = JOptionPane.showConfirmDialog(null, "hapus pesan?", "warning bro", JOptionPane.YES_NO_OPTION);
+        int ok = JOptionPane.showConfirmDialog(null, "Yakin Hapus Pesan?", "WARNING!!!", JOptionPane.YES_NO_OPTION);
         if (ok == 0) {
             String pesan = locationController.delete(txtLocationId.getText()) + "";
-            JOptionPane.showMessageDialog(this, pesan, "HAPUS", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, pesan, "SUDAH DI HAPUS", JOptionPane.INFORMATION_MESSAGE);
         }
         reset();
     }//GEN-LAST:event_btnDropActionPerformed

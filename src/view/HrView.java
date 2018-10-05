@@ -9,10 +9,7 @@ package view;
 import java.io.File;
 import java.io.InputStream;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -256,6 +253,9 @@ public class HrView extends javax.swing.JFrame {
 
     private void mniLocationReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniLocationReportActionPerformed
         // TODO add your handling code here:
+        ReportView reportView = new ReportView(sf, "src\\view\\report\\LocationReport.jrxml");
+        reportView.show();
+        dpUtamaHr.add(reportView);
     }//GEN-LAST:event_mniLocationReportActionPerformed
 
     private void mniJobReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniJobReportActionPerformed
