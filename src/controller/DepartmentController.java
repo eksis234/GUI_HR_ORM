@@ -32,6 +32,14 @@ public class DepartmentController {
         locController = new LocationController(sessionFactory);
     }
     
+    /**
+     * melakukan save atau update
+     * @param departmentId (String) Id dari department
+     * @param departmentName (String) Nama dari department
+     * @param managerId (String) Id dari manager
+     * @param locationId (String) Id dari location
+     * @return mengembalikan fungsi saveOrUpdate dari iDAO
+     */
     public boolean saveOrUpdate(String departmentId, String departmentName, String managerId, String locationId){
         Employee manager = new Employee(new Integer(managerId.substring(0,3)));
         Location location = new Location(new Short(locationId.substring(0,4)));
@@ -39,15 +47,31 @@ public class DepartmentController {
         return iDAO.saveOrUpdate(department);
     }
     
+    /**
+     * Melakukan delete atau menghapus
+     * @param departmentId (String) Id dari department
+     * @return mengembalikan fungsi delete dari iDAO
+     */
     public boolean delete(String departmentId){
         Department department = (Department) getById(departmentId);
         return iDAO.delete(department);
     }
     
+    /**
+     * Mencari berdasarkan Id
+     * @param departmentId (String) Id dari department
+     * @return mengembalikan fungsi getById dari iDAO
+     */
     public Object getById(String departmentId){
         return iDAO.getById(new Short(departmentId));
     }
     
+    /**
+     * Melakukan pencarian berdasarkan kategori
+     * @param category (String) kategori yang ingin dicari
+     * @param key (Object) kata kunci pencarian
+     * @return mengembalikan fungsi search dari iDAO
+     */
     public List<Object> search(String category, Object key){
         if(category.equals("departmentName")){
             return iDAO.search(category, key);
@@ -63,15 +87,27 @@ public class DepartmentController {
         }
     }
     
+    /**
+     * Mengambil seluruh data dari database
+     * @return mengembalikan fungsi getAll dari iDAO
+     */
     public List<Object> getAll(){
         return iDAO.getAll();
     }
     
+    /**
+     * mengambil Id yang paling baru atau terakhir
+     * @return mengembalikan Id department yang sudah ditambah dengan 10
+     */
     public Object getNewId(){
         Department department =  (Department) iDAO.getLastId();
         return department.getDepartmentId() + 10;
     }
     
+    /**
+     * memasukan data dari department name kedalam combobox
+     * @param cmb (JComboBox) combobox
+     */
     public void loadCmbDepartmentName(JComboBox cmb){
         List<Object> objects = this.getAll();
         for (Object object : objects) {
@@ -80,6 +116,10 @@ public class DepartmentController {
         }
     }
     
+    /**
+     * memasukan data dari employee id dan employee last name kedalam combobox
+     * @param cmb (JComboBox) combobox
+     */
     public  void loadCmbManagerId(JComboBox cmb){
         List<Object> objects = (List<Object>) empController.getAll();
         for (Object object : objects) {
@@ -88,6 +128,10 @@ public class DepartmentController {
         }
     }
     
+    /**
+     * memasukan data dari location id dan city kedalam combobox
+     * @param cmb (JComboBox) combobox
+     */
     public  void loadCmbLocationId(JComboBox cmb){
         List<Location> objects = (List<Location>) locController.getAll();
         for (Object object : objects) {

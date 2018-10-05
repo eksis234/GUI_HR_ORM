@@ -236,6 +236,11 @@ public class DepartmentView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbKategoriActionPerformed
 
+    /**
+     * melakukan pencarian berdasarkan kategori combobox dengan tombol enter, dan juga untuk
+     * mengeluarkan seluruh data saat menghapus search
+     * @param evt KeyEvent
+     */
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -248,6 +253,10 @@ public class DepartmentView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtSearchKeyReleased
 
+    /**
+     * mengambil data pada baris tabel yang di klik menggunakan mouse
+     * @param evt MouseEvent
+     */
     private void tblDepartmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDepartmentMouseClicked
         // TODO add your handling code here:
         int row = tblDepartment.getSelectedRow();
@@ -259,9 +268,9 @@ public class DepartmentView extends javax.swing.JInternalFrame {
         edit();
     }//GEN-LAST:event_tblDepartmentMouseClicked
 
-    /**
+   /**
      * Melakukan simpan atau update saat tombol save di tekan
-     * @param evt jenis event
+     * @param evt ActionEvent
      */
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
@@ -281,6 +290,10 @@ public class DepartmentView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
+    /**
+     * mengeluarkan warning delete dan melakukan delete
+     * @param evt ActionEvent
+     */
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         int messageBox = JOptionPane.showConfirmDialog(this, "Are You Sure You Want to Delete This Data ?", "Delete", JOptionPane.YES_NO_OPTION ,JOptionPane.WARNING_MESSAGE);
@@ -315,6 +328,10 @@ public class DepartmentView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 
+     /**
+     * Menampilkan seluruh data department kedalam tabel
+     * @param department (List) department
+     */
      private void bindingDepartment(List<Object> department) {
         String[] header = {"No", "Department ID", "Department Name", "Manager Name", "City"};
         String[][] data = new String[department.size()][header.length];
@@ -342,8 +359,9 @@ public class DepartmentView extends javax.swing.JInternalFrame {
     }
     
     /**
-     * Mengeset textfield department Id dengan method autoId, menyalakan textfield dan menghilangkan kemampuan edit dari
-     * Department Id, mematikan tombol delete, mengembalikan seluruh combobox ke pilihan pertama
+     * Men-set textfield department Id dengan method getNewId, mengaktifkan textfield dan 
+     * menghilangkan kemampuan edit dari Department Id, me-nonaktifkan tombol delete, 
+     * mengembalikan seluruh combobox ke pilihan pertama
      */
     private void reset() {
         txtDepartmentId.setText(controller.getNewId()+"");
@@ -354,5 +372,4 @@ public class DepartmentView extends javax.swing.JInternalFrame {
         cmbManagerId.setSelectedItem("100 - King");
         cmbLocationId.setSelectedItem("1000 - Roma");
     }
-    
 }
