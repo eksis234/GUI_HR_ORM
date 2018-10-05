@@ -61,28 +61,15 @@ public class EmployeeControllerTest {
     }
 
     /**
-     * Test of search method, of class EmployeeController.
-     */
-//    @Test
-//    public void testSearch() {
-//        System.out.println("search");
-//        String category = "employeeId";
-//        String value = "100";
-//        EmployeeController instance = new EmployeeController(tools.HibernateUtil.getSessionFactory());
-//        Object result = instance.search(category, value);
-//        assertNotNull(result);
-//    }
-
-    /**
      * Test of delete method, of class EmployeeController.
      */
-//    @Test
-//    public void testDelete() {
-//        System.out.println("delete");
-//        EmployeeController instance = new EmployeeController(tools.HibernateUtil.getSessionFactory());
-//        boolean result = instance.delete("207");
-//        assertTrue(result);
-//    }
+    @Test
+    public void testDelete() {
+        System.out.println("delete");
+        EmployeeController instance = new EmployeeController(tools.HibernateUtil.getSessionFactory());
+        boolean result = instance.delete("207");
+        assertTrue(result);
+    }
 
     /**
      * Test of saveOrUpdate method, of class EmployeeController.
