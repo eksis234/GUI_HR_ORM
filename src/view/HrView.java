@@ -6,16 +6,14 @@
  */
 package view;
 
-import java.io.File;
-import java.io.InputStream;
+import java.awt.BorderLayout;
 import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JInternalFrame;
+import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JRViewer;
 import org.hibernate.SessionFactory;
 import org.hibernate.engine.jdbc.connections.spi.ConnectionProvider;
@@ -268,25 +266,35 @@ public class HrView extends javax.swing.JFrame {
 
     private void mniEmployeeReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniEmployeeReportActionPerformed
         // TODO add your handling code here:
-        String path = "view.report/EmployeeReport.jasper";
-        HashMap parameter = new HashMap();
-        File reportFile = new File(path);
+        String path = "F:\\GitHub\\Re-clone\\GUI_HR_ORM\\src\\view\\report\\EmployeeReport.jrxml";
         Connection connection = null;
         try {
             connection = sf.getSessionFactoryOptions().getServiceRegistry().
                     getService(ConnectionProvider.class).getConnection();
-            InputStream jReport = this.getClass().getClassLoader().getResourceAsStream(reportFile.getPath());
-            JasperPrint jPrint = JasperFillManager.fillReport(jReport, parameter, connection);
-            JInternalFrame frame = new JInternalFrame("Report");
-            frame.getContentPane().add(new JRViewer(jPrint));
-            frame.pack();
-            frame.setResizable(true);
-            frame.setClosable(true);
-            frame.setMaximizable(true);
-            frame.setSize(1000, 700);
+            JasperDesign jasperDesign = JRXmlLoader.load(path);
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, connection);
+            JRViewer viewer = new JRViewer(jasperPrint);
+            dpUtamaHr.setLayout(new BorderLayout());
+            dpUtamaHr.add(viewer);
         } catch (Exception e) {
             e.printStackTrace();
         }
+//        try {
+//            connection = sf.getSessionFactoryOptions().getServiceRegistry().
+//                    getService(ConnectionProvider.class).getConnection();
+//            InputStream jReport = this.getClass().getClassLoader().getResourceAsStream(reportFile.getPath());
+//            JasperPrint jPrint = JasperFillManager.fillReport(jReport, parameter, connection);
+//            JInternalFrame frame = new JInternalFrame("Report");
+//            frame.getContentPane().add(new JRViewer(jPrint));
+//            frame.pack();
+//            frame.setResizable(true);
+//            frame.setClosable(true);
+//            frame.setMaximizable(true);
+//            frame.setSize(1000, 700);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }//GEN-LAST:event_mniEmployeeReportActionPerformed
 
     /**

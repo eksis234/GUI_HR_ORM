@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d38192c0-7643-45f1-8850-397be67df8da">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" >
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -39,9 +39,9 @@ ORDER BY 1]]>
 	<title>
 		<band height="43" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="555" height="43" uuid="78584563-2ab6-4cbd-97e3-0c293838847c"/>
+				<reportElement x="0" y="0" width="555" height="43" />
 				<textElement textAlignment="Center">
-					<font size="30"/>
+					<font fontName="Serif" size="30"/>
 				</textElement>
 				<text><![CDATA[EMPLOYEE REPORT]]></text>
 			</staticText>
@@ -50,12 +50,17 @@ ORDER BY 1]]>
 	<pageHeader>
 		<band height="35" splitType="Stretch">
 			<textField>
-				<reportElement x="435" y="0" width="80" height="20" uuid="e8cddcc7-3a79-433c-a4dd-60ed5f6f4557"/>
-				<textElement textAlignment="Right"/>
+				<reportElement x="435" y="0" width="80" height="20" />
+				<textElement textAlignment="Right">
+					<font fontName="Serif"/>
+				</textElement>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="515" y="0" width="40" height="20" uuid="836ea7ec-38a9-41d4-a9fa-a463e7102f8c"/>
+				<reportElement x="515" y="0" width="40" height="20" />
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -63,47 +68,80 @@ ORDER BY 1]]>
 	<columnHeader>
 		<band height="21" splitType="Stretch">
 			<staticText>
-				<reportElement x="2" y="0" width="21" height="20" uuid="0afe8875-5033-4033-a429-9a62bc3f8980"/>
+				<reportElement x="2" y="0" width="21" height="20" />
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
 				<text><![CDATA[NO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="23" y="0" width="20" height="20" uuid="50d5b747-1ec5-4caa-b3cf-18d0af74b129"/>
+				<reportElement x="23" y="0" width="20" height="20" />
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
 				<text><![CDATA[ID]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="43" y="0" width="84" height="20" uuid="d209fb6c-6dc1-4001-b776-7d97b25d2cec"/>
+				<reportElement x="43" y="0" width="84" height="20" />
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
 				<text><![CDATA[Full Name]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="127" y="0" width="48" height="20" uuid="d51ff5ba-c653-453c-8202-3b9325d28eed"/>
+				<reportElement x="127" y="0" width="48" height="20" />
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
 				<text><![CDATA[Email]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="175" y="0" width="60" height="20" uuid="d27e29a2-7773-4146-a9d8-6d2ee5dde4af"/>
+				<reportElement x="175" y="0" width="60" height="20" />
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
 				<text><![CDATA[Phone]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="235" y="0" width="63" height="20" uuid="57cc135c-676e-4e20-9d31-3fd8098845f8"/>
+				<reportElement x="235" y="0" width="63" height="20" />
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
 				<text><![CDATA[Hire Date]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="298" y="0" width="44" height="20" uuid="44fd2cc3-6c0c-413c-9922-ae39d99f9fc1"/>
+				<reportElement x="298" y="0" width="44" height="20" />
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
 				<text><![CDATA[Job]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="342" y="0" width="39" height="20" uuid="bdbbf16c-6bf3-451b-ba21-db7879b9a7cd"/>
+				<reportElement x="342" y="0" width="39" height="20" />
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
 				<text><![CDATA[Salary]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="381" y="0" width="64" height="20" uuid="a4e25d8b-9b08-4104-a66a-4b4a7226f52d"/>
+				<reportElement x="381" y="0" width="64" height="20" />
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
 				<text><![CDATA[Commission]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="445" y="0" width="47" height="20" uuid="483452b0-22ae-4ada-95c1-7d4477b0cd6b"/>
+				<reportElement x="445" y="0" width="47" height="20" />
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
 				<text><![CDATA[Manager]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="492" y="0" width="63" height="20" uuid="8d57b8ca-325b-4774-ba34-2bc1ed12f199"/>
+				<reportElement x="492" y="0" width="63" height="20" />
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
 				<text><![CDATA[Department]]></text>
 			</staticText>
 		</band>
@@ -111,47 +149,80 @@ ORDER BY 1]]>
 	<detail>
 		<band height="47" splitType="Stretch">
 			<textField>
-				<reportElement x="2" y="0" width="21" height="47" uuid="d6c28c28-bc8e-4c1c-b48f-5282ff370342"/>
+				<reportElement x="2" y="0" width="21" height="47" />
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="23" y="0" width="20" height="47" uuid="25938d03-02b9-4c9c-bd1a-be9a32b38e9c"/>
+				<reportElement x="23" y="0" width="20" height="47" />
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{EMPLOYEES_EMPLOYEE_ID}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="43" y="0" width="84" height="47" uuid="707ea181-3d76-4799-8c9c-d885da6bb2b5"/>
+				<reportElement x="43" y="0" width="84" height="47" />
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{EMPLOYEES_FIRST_NAME} + " " + $F{EMPLOYEES_LAST_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="127" y="0" width="48" height="47" uuid="6e731c53-6345-4536-a553-9edf962cab74"/>
+				<reportElement x="127" y="0" width="48" height="47" />
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{EMPLOYEES_EMAIL}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="175" y="0" width="60" height="47" uuid="504b2049-4da3-4fe4-a45c-0066949b1930"/>
+				<reportElement x="175" y="0" width="60" height="47" />
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{EMPLOYEES_PHONE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="235" y="0" width="63" height="47" uuid="f9241aa6-ecf1-49fc-8cc9-1f1dc59093bf"/>
+				<reportElement x="235" y="0" width="63" height="47" />
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{EMPLOYEES_HIRE_DATE}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="298" y="0" width="44" height="47" uuid="5a9f14ae-0edf-41a9-aeb3-3840336e228c"/>
+				<reportElement x="298" y="0" width="44" height="47" />
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{JOBS_JOB_TITLE}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.00">
-				<reportElement x="342" y="0" width="39" height="47" uuid="70e92bbe-32e1-4d29-835e-4c11be9071fa"/>
+				<reportElement x="342" y="0" width="39" height="47" />
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{EMPLOYEES_SALARY}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="381" y="0" width="64" height="47" uuid="855b5dc6-7767-44ce-8e9a-9b7e5df3e9d9"/>
+				<reportElement x="381" y="0" width="64" height="47" />
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{EMPLOYEES_COMMISSION_PCT}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="445" y="0" width="47" height="47" uuid="e698eda1-c150-4663-ad8e-629e66529e8a"/>
+				<reportElement x="445" y="0" width="47" height="47" />
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{EMPLOYEES_MANAGER_ID}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="492" y="0" width="63" height="47" uuid="5c410cff-29db-4017-8543-ca061dc6169a"/>
+				<reportElement x="492" y="0" width="63" height="47" />
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{DEPARTMENTS_DEPARTMENT_NAME}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -162,12 +233,17 @@ ORDER BY 1]]>
 	<pageFooter>
 		<band height="54" splitType="Stretch">
 			<textField>
-				<reportElement x="435" y="34" width="80" height="20" uuid="8da41dce-556e-40eb-9875-020d98fea4cc"/>
-				<textElement textAlignment="Right"/>
+				<reportElement x="435" y="34" width="80" height="20" />
+				<textElement textAlignment="Right">
+					<font fontName="Serif"/>
+				</textElement>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="515" y="34" width="40" height="20" uuid="35c84de9-584b-4ec5-a0c2-b28d728c98ba"/>
+				<reportElement x="515" y="34" width="40" height="20" />
+				<textElement>
+					<font fontName="Serif"/>
+				</textElement>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
