@@ -6,11 +6,8 @@
  */
 package view;
 
-import java.io.File;
+import java.awt.BorderLayout;
 import java.sql.Connection;
-import java.util.HashMap;
-import javax.swing.JInternalFrame;
-import net.sf.jasperreports.engine.JRReport;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -18,7 +15,6 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JRViewer;
-import net.sf.jasperreports.view.JRDesignViewer;
 import org.hibernate.SessionFactory;
 import org.hibernate.engine.jdbc.connections.spi.ConnectionProvider;
 import tools.HibernateUtil;
@@ -270,9 +266,7 @@ public class HrView extends javax.swing.JFrame {
 
     private void mniEmployeeReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniEmployeeReportActionPerformed
         // TODO add your handling code here:
-        String path = "F:\\GitHub\\Multi Branchs\\GUI_ORM_HR\\view.report/EmployeeReport.jrxml";
-        HashMap parameter = new HashMap();
-        File reportFile = new File(path);
+        String path = "F:\\GitHub\\Re-clone\\GUI_HR_ORM\\src\\view\\report\\EmployeeReport.jrxml";
         Connection connection = null;
         try {
             connection = sf.getSessionFactoryOptions().getServiceRegistry().
@@ -280,7 +274,8 @@ public class HrView extends javax.swing.JFrame {
             JasperDesign jasperDesign = JRXmlLoader.load(path);
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, connection);
-            JRViewer viewer = new JRDesignViewer((JRReport) jasperPrint);
+            JRViewer viewer = new JRViewer(jasperPrint);
+            dpUtamaHr.setLayout(new BorderLayout());
             dpUtamaHr.add(viewer);
         } catch (Exception e) {
             e.printStackTrace();
