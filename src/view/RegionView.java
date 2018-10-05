@@ -301,6 +301,7 @@ public class RegionView extends javax.swing.JInternalFrame {
         tbRegion.setModel(new DefaultTableModel(data, header));
         reset();
     }
+    
     /**
      * Method untuk mengaktifkan tombol delete dan mematikan textfield 
      */
