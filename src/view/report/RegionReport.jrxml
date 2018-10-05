@@ -33,7 +33,7 @@ FROM
 				<textElement>
 					<font size="12"/>
 				</textElement>
-				<text><![CDATA[Data Region berisi id region dan nama region dari database HR]]></text>
+				<text><![CDATA[Data Region berisi id region dan nama region dari database HR  ]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
