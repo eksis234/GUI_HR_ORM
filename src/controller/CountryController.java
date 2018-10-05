@@ -73,7 +73,6 @@ public class CountryController {
      * @return get hasil search
      */
     public List<Object> search(String category, Object key) {
-        System.out.println(category+"-"+key);  
         if(category.equals("regionName")){
             return idao.search("regionId", (Region) rc.getByName(key+""));
         }else if (category.equals("regionId")){
@@ -91,7 +90,9 @@ public class CountryController {
         return idao.getById(countryId);
     }
     
-    
+    public Object getByName (String countryName){
+        return idao.getByName(countryName);
+    }
     
     
 

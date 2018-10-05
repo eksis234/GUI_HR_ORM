@@ -2,19 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-          <file>file:/E:/E/MII/oracle/GUI_HR_ORM/src/controller/CountryController.java</file>
-            <file>file:/E:/E/MII/oracle/GUI_HR_ORM/src/entities/Country.java</file>
-            <file>file:/E:/E/MII/oracle/GUI_HR_ORM/src/view/CountryView.java</file>
-            <file>file:/E:/METRO%20DATA/NETBEANS/GUI_HR_ORM/test/controller/DepartmentControllerTest.java</file>
-            <file>file:/E:/METRO%20DATA/NETBEANS/GUI_HR_ORM/src/controller/DepartmentController.java</file>
-            <file>file:/D:/Kerja/PT.Metrodata(MII)/Netbeans%20Project/GUI_ORM_HR_NEW/GUI_HR_ORM/src/daos/FunctionDAO.java</file>
-            <file>file:/D:/Kerja/PT.Metrodata(MII)/Netbeans%20Project/GUI_ORM_HR_NEW/GUI_HR_ORM/src/view/HrView.java</file>
-            <file>file:/D:/Kerja/PT.Metrodata(MII)/Netbeans%20Project/GUI_ORM_HR_NEW/GUI_HR_ORM/src/view/LocationView.java</file>
-            <file>file:/D:/Kerja/PT.Metrodata(MII)/Netbeans%20Project/GUI_ORM_HR_NEW/GUI_HR_ORM/src/daos/InterfaceDAO.java</file>
-            <file>file:/D:/Kerja/PT.Metrodata(MII)/Netbeans%20Project/GUI_ORM_HR_NEW/GUI_HR_ORM/src/daos/GeneralDAO.java</file>
-            <file>file:/D:/Kerja/PT.Metrodata(MII)/Netbeans%20Project/GUI_ORM_HR_NEW/GUI_HR_ORM/src/controller/LocationController.java</file>
-            <file>file:/D:/Kerja/PT.Metrodata(MII)/Netbeans%20Project/GUI_ORM_HR_NEW/GUI_HR_ORM/src/view/DepartmentView.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
