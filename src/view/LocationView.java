@@ -7,6 +7,7 @@ package view;
 
 import controller.CountryController;
 import controller.LocationController;
+import entities.Country;
 import entities.Location;
 import java.awt.event.KeyEvent;
 import java.util.List;
@@ -21,6 +22,7 @@ import org.hibernate.SessionFactory;
 public final class LocationView extends javax.swing.JInternalFrame {
 
     private final LocationController locationController;
+    private CountryController cc;
 
     //private final CountryController countryController;
     /**
@@ -32,7 +34,7 @@ public final class LocationView extends javax.swing.JInternalFrame {
         initComponents();
         locationController = new LocationController(sessionFactory);
         locationController.loadCmb(cmbCountry);
-
+        cc = new CountryController(sessionFactory);
         reset();
     }
 
@@ -385,9 +387,14 @@ public final class LocationView extends javax.swing.JInternalFrame {
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
         // TODO add your handling code here:
+
         if (txtKategori.getText().equals("locationId")) {
             Object object = new Short(txtSearch.getText());
             List<Object> location = locationController.searchLoc(txtKategori.getText(), object);
+            bindingLocation(location);
+        } else if (txtKategori.getText().equals("countryName")) {
+            Country c = (Country) cc.getByName(txtSearch.getText());
+            List<Object> location = locationController.searchLoc("countryId", c);
             bindingLocation(location);
         } else {
             List<Object> location = locationController.searchLoc(txtKategori.getText(), txtSearch.getText());

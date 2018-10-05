@@ -164,7 +164,83 @@ public class CountryView extends javax.swing.JInternalFrame {
     private void txtCountryIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCountryIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCountryIdActionPerformed
+    /**
+     * dok btnSaveOrUpdate
+     * @param evt event
+     */
+    private void btnSaveCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveCActionPerformed
+        // TODO add your handling code here:
+        String abcd = cmbRegionId.getSelectedItem()+"";
+        String subRegionId = abcd.substring(0,1);
+        Country country = new Country();
+        country = new Country(txtCountryId.getText());
+        country.setCountryName(txtCountryName.getText());
+        Region region = new Region(new BigDecimal(subRegionId)); 
+        country.setRegionId(region);
+        boolean isUpdate = false;
+        if(!txtCountryId.isEnabled()){
+            isUpdate = true;
+        }
+        if (isUpdate) {   
+            controller.saveOrUpdate(country);        //txtCountryId.getText(),txtCountryName.getText(),  subRegionId, false);
+            JOptionPane.showMessageDialog(this, "Pesan Update", "Update", JOptionPane.INFORMATION_MESSAGE);
+            bindingCountries(controller.getAll());}
+        else {controller.saveOrUpdate(country);    //txtCountryId.getText(),txtCountryName.getText(), subRegionId, true);
+            JOptionPane.showMessageDialog(this, "Pesan Simpan", "Simpan", JOptionPane.INFORMATION_MESSAGE);
+            bindingCountries(controller.getAll());
+            txtCountryId.setEditable(true);                       
+         }
+       cmbRegionId.setSelectedIndex(0);
+    }//GEN-LAST:event_btnSaveCActionPerformed
 
+    /**
+     * dok btnDrop
+     * @param evt event
+     */
+    private void btnDropCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDropCActionPerformed
+        // TODO add your handling code here:
+        int response = JOptionPane.showConfirmDialog(null, "Do you really want to delete?","Pertanyaan",JOptionPane.YES_NO_OPTION);
+        Country country = new Country();
+        country = new Country(txtCountryId.getText());
+        if (response == JOptionPane.YES_OPTION) {
+        controller.delete(country);
+        JOptionPane.showMessageDialog(this, "Pesan Delete", "Delete", JOptionPane.INFORMATION_MESSAGE);
+        }else if (response == JOptionPane.NO_OPTION) {
+            JOptionPane.showMessageDialog(this, "Tidak Jadi Hapus", "Delete", JOptionPane.INFORMATION_MESSAGE);
+            bindingCountries(controller.getAll());
+        }       
+        bindingCountries(controller.getAll());
+        cmbRegionId.setSelectedIndex(0);
+    }//GEN-LAST:event_btnDropCActionPerformed
+
+    /**
+     * dok cmbRegionId
+     * @param evt event
+     */
+    private void cmbRegionIdMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbRegionIdMouseEntered
+        // TODO add your handling code here:
+        String abd = cmbRegionId.getSelectedItem()+"";
+        String subAbd = abd.substring(0,1);
+    }//GEN-LAST:event_cmbRegionIdMouseEntered
+
+    /**
+     * dok btnFind
+     * @param evt event
+     */
+    private void btnFindCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindCActionPerformed
+        // TODO add your handling code here:
+        if (!txtFindCountry.getText().equalsIgnoreCase("")) { 
+            if (cmbKategoriCountry.getSelectedItem().equals("Region Id")){
+            bindingCountries(controller.search("regionId", new BigDecimal(txtFindCountry.getText())));
+            } else if (cmbKategoriCountry.getSelectedItem().equals("Region Name")){
+            bindingCountries(controller.search("regionName", txtFindCountry.getText()));
+            }else if (cmbKategoriCountry.getSelectedItem().equals("Country Id")){
+            bindingCountries(controller.search("countryId", txtFindCountry.getText()));
+            }else if (cmbKategoriCountry.getSelectedItem().equals("Country Name"))
+            bindingCountries(controller.search("countryName", txtFindCountry.getText()));            
+            //bindingCountries(controller.search(cmbItem[cmbKategoriCountry.getSelectedIndex()], txtFindCountry.getText()));
+        }
+    }//GEN-LAST:event_btnFindCActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDropC;
