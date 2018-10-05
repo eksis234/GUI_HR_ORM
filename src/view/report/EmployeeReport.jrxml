@@ -79,31 +79,16 @@ FROM
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch">
-			<staticText>
-				<reportElement x="208" y="32" width="100" height="20" uuid="dd0d48a8-2d4b-4a80-b848-0c6acf7a212f"/>
-				<text><![CDATA[REPORT EMPLOYEE]]></text>
-			</staticText>
-		</band>
+		<band height="79" splitType="Stretch"/>
 	</title>
 	<pageHeader>
 		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch">
-			<staticText>
-				<reportElement x="345" y="2" width="100" height="20" uuid="f4fa699b-64a4-4c18-a1c4-4e40e5fc3c91"/>
-				<text><![CDATA[EMPLOYEE ID]]></text>
-			</staticText>
-		</band>
+		<band height="61" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
-			<textField>
-				<reportElement x="345" y="56" width="100" height="20" uuid="92bd6730-264f-46c0-bd27-27d8ce309c5d"/>
-				<textFieldExpression><![CDATA[$F{EMPLOYEES_EMPLOYEE_ID}]]></textFieldExpression>
-			</textField>
-		</band>
+		<band height="125" splitType="Stretch"/>
 	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch"/>
