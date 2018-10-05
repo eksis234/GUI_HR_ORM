@@ -212,6 +212,7 @@ public class EmployeeView extends javax.swing.JInternalFrame {
                     .addComponent(jLabel6)
                     .addComponent(dpHireDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(24, Short.MAX_VALUE))
+
         );
 
         jLabel7.setText("Job");
