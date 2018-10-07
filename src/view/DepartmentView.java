@@ -30,6 +30,7 @@ public class DepartmentView extends javax.swing.JInternalFrame {
     private final DepartmentController controller;
     private EmployeeController employeeController;
     private String[] cmbItem = {"departmentId", "departmentName", "managerId", "locationId"};
+    private SerbaSerbi ss;
     
     
     /**
@@ -45,6 +46,7 @@ public class DepartmentView extends javax.swing.JInternalFrame {
         controller.loadCmbDepartmentName(cmbDepartmentName);
         controller.loadCmbLocationId(cmbLocationId);
         controller.loadCmbManagerId(cmbManagerId);
+        ss = new SerbaSerbi();
     }
 
     /**
@@ -115,6 +117,11 @@ public class DepartmentView extends javax.swing.JInternalFrame {
         txtDepartmentId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDepartmentIdActionPerformed(evt);
+            }
+        });
+        txtDepartmentId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDepartmentIdKeyTyped(evt);
             }
         });
 
@@ -307,6 +314,11 @@ public class DepartmentView extends javax.swing.JInternalFrame {
     private void txtDepartmentIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDepartmentIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDepartmentIdActionPerformed
+
+    private void txtDepartmentIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDepartmentIdKeyTyped
+        // TODO add your handling code here:
+        ss.filterHuruf(evt);
+    }//GEN-LAST:event_txtDepartmentIdKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

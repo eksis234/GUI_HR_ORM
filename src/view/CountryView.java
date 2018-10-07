@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import org.hibernate.SessionFactory;
+import view.SerbaSerbi.pesan;
 
 /**
  *
@@ -25,6 +26,7 @@ public class CountryView extends javax.swing.JInternalFrame {
     private final CountryController controller;
     private TableRowSorter<TableModel> rowSorter;
     private String[] cmbItem = {"countryId","countryName","regionId","regionName"};
+    private SerbaSerbi ss;
     
     /**
      * Creates new form CountryView execute internal form
@@ -36,6 +38,7 @@ public class CountryView extends javax.swing.JInternalFrame {
         bindingCountries(controller.getAll());
         controller.loadCmbCountry(cmbRegionId); 
         tblCountry.setRowSorter(rowSorter);
+        ss = new SerbaSerbi();
     }
 
     /**
@@ -366,12 +369,12 @@ public class CountryView extends javax.swing.JInternalFrame {
 
     private void txtCountryIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCountryIdKeyTyped
         // TODO add your handling code here:
-        filterangka(evt);
+        ss.filterAngka(evt);
     }//GEN-LAST:event_txtCountryIdKeyTyped
 
     private void txtCountryNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCountryNameKeyTyped
         // TODO add your handling code here:
-        filterangka(evt);
+        ss.filterAngka(evt);
     }//GEN-LAST:event_txtCountryNameKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -434,27 +437,6 @@ private void bindingCountries(List<Object> countrys) {
         btnSaveC.setEnabled(true);
         btnDropC.setEnabled(true);
     }
-
-    private enum pesan{
-      save("Berhasil Disimpan"), update("Berhasil Diperbaharui"), 
-      delete("Berhassil Dihapus"), cancle("Batal Dihapus"),
-      find("Berhasil Ditemukan");  
-        
-      private String isine;
-      
-      private pesan(String isine){
-          this.isine = isine;
-      }
-      public String getPesan(){
-          return isine;
-      }
-    }
-    
-    public void filterangka(KeyEvent b){
-        if(Character.isDigit(b.getKeyChar())){
-            b.consume();
-            JOptionPane.showMessageDialog(null,"Inputan berupa huruf");
-        }
-    }
+   
 
 }

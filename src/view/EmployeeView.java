@@ -45,6 +45,7 @@ public class EmployeeView extends javax.swing.JInternalFrame {
     private Vector listJob;
     private Vector listManager;
     private Vector listDepartment;
+    private SerbaSerbi ss;
 
     /**
      * Creates new form EmployeeViewSimple
@@ -57,6 +58,7 @@ public class EmployeeView extends javax.swing.JInternalFrame {
         jobController = new JobController(sessionFactory);
         departmentController = new DepartmentController(sessionFactory);
         reset();
+        ss = new SerbaSerbi();
 
     }
 
@@ -153,6 +155,30 @@ public class EmployeeView extends javax.swing.JInternalFrame {
 
         jLabel2.setText("First Name");
 
+        txtFirstName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFirstNameKeyTyped(evt);
+            }
+        });
+
+        txtLastName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtLastNameKeyTyped(evt);
+            }
+        });
+
+        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEmailKeyTyped(evt);
+            }
+        });
+
+        txtPhoneNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPhoneNumberKeyTyped(evt);
+            }
+        });
+
         jLabel6.setText("Hire Date");
 
         jLabel5.setText("Phone Number");
@@ -223,6 +249,12 @@ public class EmployeeView extends javax.swing.JInternalFrame {
         jLabel10.setText("Manager");
 
         jLabel11.setText("Department");
+
+        txtSalary.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSalaryKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -485,6 +517,31 @@ public class EmployeeView extends javax.swing.JInternalFrame {
     private void txtCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCariActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCariActionPerformed
+
+    private void txtFirstNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFirstNameKeyTyped
+        // TODO add your handling code here:
+        ss.filterAngka(evt);
+    }//GEN-LAST:event_txtFirstNameKeyTyped
+
+    private void txtLastNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLastNameKeyTyped
+        // TODO add your handling code here:
+        ss.filterAngka(evt);
+    }//GEN-LAST:event_txtLastNameKeyTyped
+
+    private void txtEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyTyped
+        // TODO add your handling code here:
+        ss.filterAngka(evt);
+    }//GEN-LAST:event_txtEmailKeyTyped
+
+    private void txtPhoneNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneNumberKeyTyped
+        // TODO add your handling code here:
+        ss.filterHuruf(evt);
+    }//GEN-LAST:event_txtPhoneNumberKeyTyped
+
+    private void txtSalaryKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSalaryKeyTyped
+        // TODO add your handling code here:
+        ss.filterHuruf(evt);
+    }//GEN-LAST:event_txtSalaryKeyTyped
 
     private void getSetCmbJob() {
         listJob = new Vector();

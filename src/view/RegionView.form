@@ -161,6 +161,7 @@
         <Component class="javax.swing.JTextField" name="txtRegionId">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRegionIdActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtRegionIdKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
@@ -185,6 +186,9 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtRegionName">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtRegionNameKeyTyped"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

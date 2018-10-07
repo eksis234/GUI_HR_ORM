@@ -23,6 +23,7 @@ public final class LocationView extends javax.swing.JInternalFrame {
 
     private final LocationController locationController;
     private CountryController cc;
+    private SerbaSerbi ss;
 
     //private final CountryController countryController;
     /**
@@ -35,6 +36,7 @@ public final class LocationView extends javax.swing.JInternalFrame {
         locationController = new LocationController(sessionFactory);
         locationController.loadCmb(cmbCountry);
         cc = new CountryController(sessionFactory);
+        ss = new SerbaSerbi();
         reset();
     }
 
@@ -118,6 +120,11 @@ public final class LocationView extends javax.swing.JInternalFrame {
                 txtLocationIdActionPerformed(evt);
             }
         });
+        txtLocationId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtLocationIdKeyTyped(evt);
+            }
+        });
 
         txtStreetAddress.setColumns(20);
         txtStreetAddress.setRows(5);
@@ -145,9 +152,26 @@ public final class LocationView extends javax.swing.JInternalFrame {
 
         jLabel11.setText(":");
 
+        txtCity.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCityKeyTyped(evt);
+            }
+        });
+
         txtStateProvince.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtStateProvinceActionPerformed(evt);
+            }
+        });
+        txtStateProvince.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtStateProvinceKeyTyped(evt);
+            }
+        });
+
+        txtCountryName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCountryNameKeyTyped(evt);
             }
         });
 
@@ -422,6 +446,26 @@ public final class LocationView extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_txtSearchKeyReleased
+
+    private void txtLocationIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLocationIdKeyTyped
+        // TODO add your handling code here:
+        ss.filterHuruf(evt);
+    }//GEN-LAST:event_txtLocationIdKeyTyped
+
+    private void txtCityKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCityKeyTyped
+        // TODO add your handling code here:
+        ss.filterAngka(evt);
+    }//GEN-LAST:event_txtCityKeyTyped
+
+    private void txtStateProvinceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtStateProvinceKeyTyped
+        // TODO add your handling code here:
+        ss.filterAngka(evt);
+    }//GEN-LAST:event_txtStateProvinceKeyTyped
+
+    private void txtCountryNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCountryNameKeyTyped
+        // TODO add your handling code here:
+        ss.filterAngka(evt);
+    }//GEN-LAST:event_txtCountryNameKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

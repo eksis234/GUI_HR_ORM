@@ -23,6 +23,7 @@ import org.hibernate.SessionFactory;
  */
 public class RegionView extends javax.swing.JInternalFrame {
     private final RegionController regionController;
+    private SerbaSerbi ss;
     
     /**
      * Method konstruktor dari kelas RegionView dengan parameter sessionFactory
@@ -31,6 +32,7 @@ public class RegionView extends javax.swing.JInternalFrame {
         initComponents();
         regionController = new RegionController(sessionFactory);
         bindingRegions(regionController.getAll());
+        ss = new SerbaSerbi();
     }
 
     /**
@@ -87,6 +89,11 @@ public class RegionView extends javax.swing.JInternalFrame {
                 txtRegionIdActionPerformed(evt);
             }
         });
+        txtRegionId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRegionIdKeyTyped(evt);
+            }
+        });
 
         jLabel2.setText("REGION NAME:");
 
@@ -101,6 +108,12 @@ public class RegionView extends javax.swing.JInternalFrame {
         btnDrop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDropActionPerformed(evt);
+            }
+        });
+
+        txtRegionName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRegionNameKeyTyped(evt);
             }
         });
 
@@ -283,6 +296,16 @@ public class RegionView extends javax.swing.JInternalFrame {
         }
         }
     }//GEN-LAST:event_txtSearchKeyReleased
+
+    private void txtRegionIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRegionIdKeyTyped
+        // TODO add your handling code here:
+        ss.filterHuruf(evt);
+    }//GEN-LAST:event_txtRegionIdKeyTyped
+
+    private void txtRegionNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRegionNameKeyTyped
+        // TODO add your handling code here:
+        ss.filterAngka(evt);
+    }//GEN-LAST:event_txtRegionNameKeyTyped
     /**
      * Method untuk menampilkan data Region dari db ke tabel di RegionView
      * @param regions list dari region

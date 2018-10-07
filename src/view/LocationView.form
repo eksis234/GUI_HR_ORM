@@ -282,6 +282,7 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtLocationIdActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtLocationIdKeyTyped"/>
           </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane2">
@@ -357,13 +358,20 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCity">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCityKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtStateProvince">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtStateProvinceActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtStateProvinceKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCountryName">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCountryNameKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="cmbCountry">
           <Properties>

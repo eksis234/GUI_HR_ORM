@@ -23,11 +23,13 @@ public class JobView extends javax.swing.JInternalFrame {
      * Creates new form JobView
      */
     private final JobController jobController;
+    private SerbaSerbi ss;
     
     public JobView(SessionFactory sessionFactory) {
         initComponents();
         jobController = new JobController(sessionFactory);
         bindingJobs(jobController.getAll());
+        ss = new SerbaSerbi();
     }
 
     /**
@@ -78,6 +80,11 @@ public class JobView extends javax.swing.JInternalFrame {
                 txtMinSalaryActionPerformed(evt);
             }
         });
+        txtMinSalary.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMinSalaryKeyTyped(evt);
+            }
+        });
 
         jLabel2.setText("Job Title");
 
@@ -100,6 +107,11 @@ public class JobView extends javax.swing.JInternalFrame {
                 txtJobTitleActionPerformed(evt);
             }
         });
+        txtJobTitle.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtJobTitleKeyTyped(evt);
+            }
+        });
 
         jLabel3.setText("Minimal Salary");
 
@@ -110,10 +122,20 @@ public class JobView extends javax.swing.JInternalFrame {
                 txtMaxSalaryActionPerformed(evt);
             }
         });
+        txtMaxSalary.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMaxSalaryKeyTyped(evt);
+            }
+        });
 
         txtJobId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtJobIdActionPerformed(evt);
+            }
+        });
+        txtJobId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtJobIdKeyTyped(evt);
             }
         });
 
@@ -309,6 +331,26 @@ public class JobView extends javax.swing.JInternalFrame {
         txtMaxSalary.setText(tblJob.getValueAt(row, 4).toString());
         edit();
     }//GEN-LAST:event_tblJobMouseClicked
+
+    private void txtJobIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtJobIdKeyTyped
+        // TODO add your handling code here:
+        ss.filterHuruf(evt);
+    }//GEN-LAST:event_txtJobIdKeyTyped
+
+    private void txtJobTitleKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtJobTitleKeyTyped
+        // TODO add your handling code here:
+        ss.filterAngka(evt);
+    }//GEN-LAST:event_txtJobTitleKeyTyped
+
+    private void txtMinSalaryKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMinSalaryKeyTyped
+        // TODO add your handling code here:
+        ss.filterHuruf(evt);
+    }//GEN-LAST:event_txtMinSalaryKeyTyped
+
+    private void txtMaxSalaryKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMaxSalaryKeyTyped
+        // TODO add your handling code here:
+        ss.filterHuruf(evt);
+    }//GEN-LAST:event_txtMaxSalaryKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
