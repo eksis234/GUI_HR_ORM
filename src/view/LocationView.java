@@ -413,7 +413,11 @@ public final class LocationView extends javax.swing.JInternalFrame {
             if (txtKategori.getText().equals("locationId")) {
                 Object object = new Short(txtSearch.getText());
                 bindingLocation(locationController.searchLoc(txtKategori.getText(), object));
-            } else {
+            } else if (txtKategori.getText().equals("countryName")) {
+            Country c = (Country) cc.getByName(txtSearch.getText());
+            List<Object> location = locationController.searchLoc("countryId", c);
+            bindingLocation(location);
+            }else {
                 bindingLocation(locationController.searchLoc(txtKategori.getText(), txtSearch.getText()));
             }
         }
