@@ -102,6 +102,9 @@ public class CountryController {
         }
     }
 
+    /**
+     * untuk method enum categori berupa string
+     */
     public enum cate{
     regName("regionName"), regId("regionId"), CounId("countryId"), counName("countryName"); 
     
@@ -123,6 +126,11 @@ public class CountryController {
         return idao.getById(countryId);
     }
     
+    /**
+     * dok by name
+     * @param countryName berupa sttring
+     * @return get by Name
+     */
     public Object getByName (String countryName){
         return idao.getByName(countryName);
     }

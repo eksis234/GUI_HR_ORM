@@ -28,10 +28,10 @@ public class FunctionDAO {
      *
      * @param CRUD - 0 for Save/Update, 1 for delete, 2 for getById, 3 for
      * search, 4 for getLastId, selain 0-4 for getAll
-     * @param type
-     * @param category
-     * @param key
-     * @return
+     * @param type get classnya
+     * @param category get categorinya
+     * @param key get objecnya
+     * @return get hasinya
      */
     public Object execute(int CRUD, Object object,
             Class type, String category, Object key) {
@@ -52,6 +52,16 @@ public class FunctionDAO {
         return obj;
     }
 
+    /**
+     * dok getAction
+     * @param session get session
+     * @param crud get integer
+     * @param object get objecnya
+     * @param type get type classnya
+     * @param category get categori berupa string
+     * @param key get keyy brupa object
+     * @return 
+     */
     private Object getAction(Session session, int crud,
             Object object, Class type, String category, Object key) {
         switch (crud) {

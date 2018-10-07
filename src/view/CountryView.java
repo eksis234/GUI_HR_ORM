@@ -324,6 +324,10 @@ public class CountryView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnFindCActionPerformed
 
+    /**
+     * dok ketika salah satu row di tabel di klik
+     * @param evt get data
+     */
     private void tblCountryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCountryMouseClicked
         // TODO add your handling code here:
         int row = tblCountry.getSelectedRow();
@@ -333,6 +337,10 @@ public class CountryView extends javax.swing.JInternalFrame {
         edit();   
     }//GEN-LAST:event_tblCountryMouseClicked
 
+    /**
+     * dok ketika enter inpputan di tekfield find country
+     * @param evt get inpputaan
+     */
     private void txtFindCountryKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFindCountryKeyReleased
         // TODO add your handling code here:
                 if (txtFindCountry.getText().equals("")) {
@@ -367,11 +375,19 @@ public class CountryView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbRegionIdActionPerformed
 
+    /**
+     * filter inputan hanya berupa huruf
+     * @param evt get inputan
+     */
     private void txtCountryIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCountryIdKeyTyped
         // TODO add your handling code here:
         ss.filterAngka(evt);
     }//GEN-LAST:event_txtCountryIdKeyTyped
 
+    /**
+     * filter berupa huruf
+     * @param evt get inputan
+     */
     private void txtCountryNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCountryNameKeyTyped
         // TODO add your handling code here:
         ss.filterAngka(evt);

@@ -54,6 +54,11 @@ public class RegionController {
         return (Region) iDAO.getById(new BigDecimal(regionId));
     }
     
+    /**
+     * dok get by name
+     * @param regionName berupa string
+     * @return get by name
+     */
     public Region getByName (String regionName){
         return (Region) iDAO.getByName(regionName);
     }
