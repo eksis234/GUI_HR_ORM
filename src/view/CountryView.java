@@ -76,8 +76,19 @@ public class CountryView extends javax.swing.JInternalFrame {
                 txtCountryIdActionPerformed(evt);
             }
         });
+        txtCountryId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCountryIdKeyTyped(evt);
+            }
+        });
 
         jLabel2.setText("Region             :");
+
+        cmbRegionId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbRegionIdActionPerformed(evt);
+            }
+        });
 
         btnSaveC.setText("SAVE");
         btnSaveC.addActionListener(new java.awt.event.ActionListener() {
@@ -94,6 +105,12 @@ public class CountryView extends javax.swing.JInternalFrame {
         });
 
         jLabel3.setText("Country Name :");
+
+        txtCountryName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCountryNameKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -221,7 +238,7 @@ public class CountryView extends javax.swing.JInternalFrame {
         String abcd = cmbRegionId.getSelectedItem()+"";
         String subRegionId = abcd.substring(0,1);
         Country country = new Country();
-        country = new Country(txtCountryId.getText());
+        country = new Country(txtCountryId.getText().toUpperCase());
         country.setCountryName(txtCountryName.getText());
         Region region = new Region(new BigDecimal(subRegionId)); 
         country.setRegionId(region);
@@ -238,7 +255,7 @@ public class CountryView extends javax.swing.JInternalFrame {
             bindingCountries(controller.getAll());
             txtCountryId.setEditable(true);                       
          }
-       cmbRegionId.setSelectedIndex(0);
+       //cmbRegionId.setSelectedIndex(0);
     }//GEN-LAST:event_btnSaveCActionPerformed
 
     /**
@@ -267,8 +284,8 @@ public class CountryView extends javax.swing.JInternalFrame {
      */
     private void cmbRegionIdMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbRegionIdMouseEntered
         // TODO add your handling code here:
-        String abd = cmbRegionId.getSelectedItem()+"";
-        String subAbd = abd.substring(0,1);
+//        String abd = cmbRegionId.getSelectedItem()+"";
+//        String subAbd = abd.substring(0,1);
     }//GEN-LAST:event_cmbRegionIdMouseEntered
 
     /**
@@ -309,7 +326,7 @@ public class CountryView extends javax.swing.JInternalFrame {
         int row = tblCountry.getSelectedRow();
         txtCountryId.setText(tblCountry.getValueAt(row, 1).toString());
         txtCountryName.setText(tblCountry.getValueAt(row, 2).toString());
-        cmbRegionId.setSelectedItem(tblCountry.getValueAt(row, 3).toString());
+        cmbRegionId.setSelectedItem(tblCountry.getValueAt(row, 3)+" - "+tblCountry.getValueAt(row, 4).toString());
         edit();   
     }//GEN-LAST:event_tblCountryMouseClicked
 
@@ -342,6 +359,20 @@ public class CountryView extends javax.swing.JInternalFrame {
         }
         
     }//GEN-LAST:event_txtFindCountryKeyReleased
+
+    private void cmbRegionIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRegionIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbRegionIdActionPerformed
+
+    private void txtCountryIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCountryIdKeyTyped
+        // TODO add your handling code here:
+        filterangka(evt);
+    }//GEN-LAST:event_txtCountryIdKeyTyped
+
+    private void txtCountryNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCountryNameKeyTyped
+        // TODO add your handling code here:
+        filterangka(evt);
+    }//GEN-LAST:event_txtCountryNameKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDropC;
@@ -417,6 +448,13 @@ private void bindingCountries(List<Object> countrys) {
       public String getPesan(){
           return isine;
       }
+    }
+    
+    public void filterangka(KeyEvent b){
+        if(Character.isDigit(b.getKeyChar())){
+            b.consume();
+            JOptionPane.showMessageDialog(null,"Inputan berupa huruf");
+        }
     }
 
 }
