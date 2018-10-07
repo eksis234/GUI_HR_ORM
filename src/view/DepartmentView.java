@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.SessionFactory;
 import tools.HibernateUtil;
+import view.SerbaSerbi.pesan;
 
 /**
  *
@@ -284,14 +285,14 @@ public class DepartmentView extends javax.swing.JInternalFrame {
         if(!txtDepartmentId.isEnabled()){
             controller.saveOrUpdate(txtDepartmentId.getText(), cmbDepartmentName.getSelectedItem().toString(),
             cmbManagerId.getSelectedItem().toString(), cmbLocationId.getSelectedItem().toString());
-            JOptionPane.showMessageDialog(this, "Update Success", "Update", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
             bindingDepartment(controller.getAll());
             reset();
         }
         else{
             controller.saveOrUpdate(txtDepartmentId.getText(), cmbDepartmentName.getSelectedItem().toString(),
             cmbManagerId.getSelectedItem().toString(), cmbLocationId.getSelectedItem().toString());
-            JOptionPane.showMessageDialog(this, "Save Success", "Save", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Save", JOptionPane.INFORMATION_MESSAGE);
             bindingDepartment(controller.getAll());
             reset();
         }
