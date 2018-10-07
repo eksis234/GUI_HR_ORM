@@ -42,14 +42,13 @@ private final InterfaceDAO idao;
 
     public List<Object> search(String category, Object key) {
 
-        return idao.search(category, key);
-
-        if(category.equals("regionName")){
-            return idao.search("regionId", (Region) rc.getByName(key+""));
-        }else if (category.equals("regionId")){
-            return idao.search(category, (Region) rc.getById(key+""));
-        }
-        else return idao.search(category, key);   
+//          if(category.equals("regionName")){
+//            return idao.search("regionId", (Region) rc.getByName(key+""));
+//        }else if (category.equals("regionId")){
+//            return idao.search(category, (Region) rc.getById(key+""));
+//        }
+//        else 
+            return idao.search(category, key);   
     }
 
 
@@ -57,9 +56,9 @@ private final InterfaceDAO idao;
         return idao.getById(countryId);
     }
     
-    public Object getByName (String countryName){
-        return idao.getByName(countryName);
-    }
+//    public Object getByName (String countryName){
+//        return idao.getByName(countryName);
+//    }
     
     
 
