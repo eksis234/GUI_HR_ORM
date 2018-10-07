@@ -388,18 +388,18 @@ public final class LocationView extends javax.swing.JInternalFrame {
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
         // TODO add your handling code here:
 
-//        if (txtKategori.getText().equals("locationId")) {
-//            Object object = new Short(txtSearch.getText());
-//            List<Object> location = locationController.searchLoc(txtKategori.getText(), object);
-//            bindingLocation(location);
-//        } else if (txtKategori.getText().equals("countryName")) {
-//            Country c = (Country) cc.getByName(txtSearch.getText());
-//            List<Object> location = locationController.searchLoc("countryId", c);
-//            bindingLocation(location);
-//        } else {
-//            List<Object> location = locationController.searchLoc(txtKategori.getText(), txtSearch.getText());
-//            bindingLocation(location);
-//        }
+        if (txtKategori.getText().equals("locationId")) {
+            Object object = new Short(txtSearch.getText());
+            List<Object> location = locationController.searchLoc(txtKategori.getText(), object);
+            bindingLocation(location);
+        } else if (txtKategori.getText().equals("countryName")) {
+            Country c = (Country) cc.getByName(txtSearch.getText());
+            List<Object> location = locationController.searchLoc("countryId", c);
+            bindingLocation(location);
+        } else {
+            List<Object> location = locationController.searchLoc(txtKategori.getText(), txtSearch.getText());
+            bindingLocation(location);
+        }
 
 
     }//GEN-LAST:event_btnFindActionPerformed
