@@ -17,6 +17,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import org.hibernate.SessionFactory;
 import view.SerbaSerbi.pesan;
+import view.Infonya;
 
 /**
  *
@@ -27,6 +28,7 @@ public class CountryView extends javax.swing.JInternalFrame {
     private TableRowSorter<TableModel> rowSorter;
     private String[] cmbItem = {"countryId","countryName","regionId","regionName"};
     private SerbaSerbi ss;
+    private Infonya inf;
     
     /**
      * Creates new form CountryView execute internal form
@@ -272,13 +274,12 @@ public class CountryView extends javax.swing.JInternalFrame {
         country = new Country(txtCountryId.getText());
         if (response == JOptionPane.YES_OPTION) {
         controller.delete(country);
-        JOptionPane.showMessageDialog(this, pesan.delete.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
-        }else if (response == JOptionPane.NO_OPTION) {
-            JOptionPane.showMessageDialog(this, pesan.cancle.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
-            bindingCountries(controller.getAll());
-        }       
+        JOptionPane.showMessageDialog(this, inf.delete.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
         bindingCountries(controller.getAll());
         cmbRegionId.setSelectedIndex(0);
+        }else if (response == JOptionPane.NO_OPTION) {
+            JOptionPane.showMessageDialog(this, inf.cancle.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
+        }             
     }//GEN-LAST:event_btnDropCActionPerformed
 
     /**
