@@ -22,12 +22,16 @@ FROM
 	<title>
 		<band height="55" splitType="Stretch">
 			<staticText>
-				<reportElement x="135" y="0" width="266" height="51" uuid="78bacf92-592e-4366-bd5e-365fb86b76c5"/>
-				<textElement textAlignment="Justified" verticalAlignment="Middle">
+				<reportElement x="139" y="0" width="291" height="51" uuid="78bacf92-592e-4366-bd5e-365fb86b76c5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="26" isBold="true"/>
 				</textElement>
 				<text><![CDATA[COUNTRY REPORT]]></text>
 			</staticText>
+			<image>
+				<reportElement x="470" y="20" width="95" height="51" uuid="4e35d92b-2c52-4cfe-9c29-39374016aaab"/>
+				<imageExpression><![CDATA["E:\\E\\MII\\mii.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
@@ -130,7 +134,12 @@ FROM
 		<band height="45" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="54" splitType="Stretch">
+			<image>
+				<reportElement x="161" y="238" width="78" height="71" uuid="9c805f32-25b8-47bd-8021-972a83080689"/>
+				<imageExpression><![CDATA["E:\\E\\MII\\metrodata.jpg"]]></imageExpression>
+			</image>
+		</band>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>
