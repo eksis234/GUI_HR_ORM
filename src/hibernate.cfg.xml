@@ -50,7 +50,7 @@ Contributor(s):
     <property name="hibernate.default_schema">hr</property>
     <property name="hibernate.connection.autocommit">true</property>
     <property name="hibernate.enable_lazy_load_no_trans">true</property>
-    <mapping class="entities.Country"/>
+    <mapping class="entities.Country" file="" jar="" package="" resource=""/>
     <mapping class="entities.Department"/>
     <mapping class="entities.Employee"/>
     <mapping class="entities.Job"/>

@@ -44,7 +44,13 @@ public class SerbaSerbi {
             }
         }
     
-    
+    public void filterPass(KeyEvent c){
+            if(Character.isDigit(c.getKeyChar()) && Character.isAlphabetic(c.getKeyChar()) 
+                    && Character.isBmpCodePoint(c.getKeyChar()) ){
+                c.consume();
+               JOptionPane.showMessageDialog(null,"Inputan berupa huruf");
+            }
+        }
     
     
 }

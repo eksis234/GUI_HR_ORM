@@ -7,6 +7,7 @@ package latihanpersistance;
 
 import controller.CountryController;
 import controller.RegionController;
+import daos.GeneralDAO;
 //import daos.CountryDAO;
 //import daos.InterfaceDAO;
 //import daos.RegionDAO;
@@ -19,6 +20,7 @@ import entities.Country;
 import entities.Region;
 //import java.awt.BorderLayout;
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.util.Scanner;
 import tools.HibernateUtil;
 
@@ -31,7 +33,7 @@ public class LatihanPersistance {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         // TODO code application logic here
 //        Region region = new Region(new BigDecimal("13"));
 //        region.setRegionName("coba saja lagi");
@@ -207,5 +209,20 @@ public class LatihanPersistance {
 //        System.out.print("Kembali ke main menu(y/t): ");
 //        mn = in.next();  
 //        }while(mn.equalsIgnoreCase("y"));
+
+// Penggunaan addRegion1
+	GeneralDAO gdao = new GeneralDAO(HibernateUtil.getSessionFactory(), Region.class);
+//	int hasil = gdao.addRegion1("deka senang");
+//	System.out.println(hasil + " row(s) affected.");
+        int jml = gdao.jmlRegions();
+        System.out.println("Jumlah data di Regions = "+jml);
+	
+// Penggunaan addRegion2
+//	GeneralDAO gdao = new GeneralDAO(HibernateUtil.getSessionFactory(), Region.class);
+//	boolean hasil = gdao.addRegion2("deka senang");
+//	String pesan ="";
+//	if(hasil) pesan = "gagal dieksekusi";
+//	else pesan = "sukses gaes";
+//	System.out.println(pesan);
     }
 }
